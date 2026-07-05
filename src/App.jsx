@@ -48,7 +48,12 @@ function App()
 		<div className="app">
 			<div className="consonant">{current.letter}</div>
 			<div className="name-slot">
-				{showName ? <div className="name">{current.name}</div> : null}
+				{showName ? (
+					<>
+						<div className="name">{current.name}</div>
+						<div className="phonetic">{current.phonetic}</div>
+					</>
+				) : null}
 			</div>
 			<div className="buttons">
 				<button type="button" onClick={handleNext}>
