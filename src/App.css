@@ -35,7 +35,10 @@
 
 .buttons {
 	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 	gap: 1rem;
+	padding: 0 1rem;
 }
 
 .buttons button {
@@ -50,4 +53,10 @@
 
 .buttons button:hover {
 	background: #0ea5e9;
+}
+
+.buttons button:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+	background: #38bdf8;
 }
