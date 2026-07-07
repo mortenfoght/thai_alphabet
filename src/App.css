@@ -155,12 +155,12 @@
 	font-weight: 600;
 }
 
-.consonant-table {
+.char-table {
 	width: 100%;
 	border-collapse: collapse;
 }
 
-.consonant-table th {
+.char-table th {
 	padding: 0.5rem 0.75rem;
 	border-bottom: 1px solid #334155;
 	color: #94a3b8;
@@ -171,16 +171,16 @@
 	text-transform: uppercase;
 }
 
-.consonant-table td {
+.char-table td {
 	padding: 0.6rem 0.75rem;
 	border-bottom: 1px solid #1e293b;
 }
 
-.consonant-table tbody tr {
+.char-table tbody tr {
 	cursor: pointer;
 }
 
-.consonant-table tbody tr:hover {
+.char-table tbody tr:hover {
 	background: #1e293b;
 }
 
@@ -188,6 +188,7 @@
 	width: 3rem;
 	font-size: 1.8rem;
 	line-height: 1;
+	white-space: nowrap;
 }
 
 .cell-phonetic {

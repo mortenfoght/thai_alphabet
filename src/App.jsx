@@ -1,11 +1,13 @@
 import { useState } from "react";
 import RandomLetter from "./RandomLetter";
 import ConsonantTable from "./ConsonantTable";
+import VowelTable from "./VowelTable";
 import "./App.css";
 
 const views = [
 	{ id: "random", label: "Random Letter", Component: RandomLetter },
 	{ id: "table", label: "Consonant Table", Component: ConsonantTable },
+	{ id: "vowels", label: "Vowel Table", Component: VowelTable },
 ];
 
 function App()

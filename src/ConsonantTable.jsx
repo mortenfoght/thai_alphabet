@@ -8,7 +8,7 @@ function ConsonantTable()
 	return (
 		<div className="table-view">
 			<h2 className="table-title">Thai Consonants</h2>
-			<table className="consonant-table">
+			<table className="char-table">
 				<thead>
 					<tr>
 						<th>Letter</th>
