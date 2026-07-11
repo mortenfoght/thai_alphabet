@@ -401,15 +401,28 @@
 }
 
 .tone-matrix {
-	min-width: 620px;
+	min-width: 720px;
 }
 
+.tone-matrix th,
 .tone-matrix td {
 	white-space: nowrap;
+	text-align: center;
 }
 
 .tone-matrix tbody tr {
 	cursor: default;
+}
+
+.tone-ex {
+	display: block;
+	font-size: 1.2rem;
+}
+
+.tone-name {
+	display: block;
+	color: #94a3b8;
+	font-size: 0.72rem;
 }
 
 .tone-note {

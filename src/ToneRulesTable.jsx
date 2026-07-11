@@ -1,66 +1,97 @@
 import {
-	toneMatrix,
 	classes,
 	classLabels,
 	classThai,
 	lettersByClass,
+	syllableColumns,
+	markColumns,
+	toneExamples,
+	columnTone,
 } from "./toneRules";
 
-function cell(value)
+// One detailed tone table. With `withExamples`, each cell also shows a real
+// example word; otherwise it shows the resulting tone only.
+function ToneTable({ withExamples })
 {
-	return value || "—";
+	const columns = [...syllableColumns, ...markColumns];
+	return (
+		<div className="table-scroll">
+			<table className="char-table tone-matrix">
+				<thead>
+					<tr>
+						<th rowSpan={2}>Class</th>
+						<th colSpan={3}>Long vowel</th>
+						<th colSpan={3}>Short vowel</th>
+						<th colSpan={4}>Tone mark</th>
+					</tr>
+					<tr>
+						{syllableColumns.map((c) => (
+							<th key={c.key}>{c.label}</th>
+						))}
+						{markColumns.map((c) => (
+							<th key={c.key}>
+								{c.glyph} {c.label}
+							</th>
+						))}
+					</tr>
+				</thead>
+				<tbody>
+					{classes.map((cls) => (
+						<tr key={cls}>
+							<td>
+								<span className={`class-badge ${cls}`}>
+									{classLabels[cls]}
+								</span>
+							</td>
+							{columns.map((col) => {
+								const tone = columnTone(cls, col);
+								const example = toneExamples[cls][col.key];
+								if (withExamples)
+								{
+									return (
+										<td key={col.key}>
+											{example ? (
+												<>
+													<span className="tone-ex">{example}</span>
+													<span className="tone-name">{tone}</span>
+												</>
+											) : (
+												"—"
+											)}
+										</td>
+									);
+								}
+								return <td key={col.key}>{tone || "—"}</td>;
+							})}
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</div>
+	);
 }
 
-// Static reference: how the tone is decided, plus which letters are in each
-// class. All data comes from toneRules.js / consonants.js.
 function ToneRulesTable()
 {
 	return (
 		<div className="table-view">
 			<h2 className="table-title">Tone Rules</h2>
 			<p className="tone-intro">
-				The tone comes from the consonant class, the syllable type, and the
-				tone mark.
+				The tone comes from the consonant class, the syllable, and any tone
+				mark. A syllable is “live” when it ends in a long vowel or a sonorant
+				(น ง ม ย ว), and “dead” when it ends in a short vowel or a stop
+				(ก ด บ = k, t, p).
 			</p>
 
-			<div className="table-scroll">
-				<table className="char-table tone-matrix">
-					<thead>
-						<tr>
-							<th>Class</th>
-							<th>Live</th>
-							<th>Dead · short</th>
-							<th>Dead · long</th>
-							<th>Mai ek อ่</th>
-							<th>Mai tho อ้</th>
-							<th>Mai tri อ๊</th>
-							<th>Mai chattawa อ๋</th>
-						</tr>
-					</thead>
-					<tbody>
-						{toneMatrix.map((row) => (
-							<tr key={row.cls}>
-								<td>
-									<span className={`class-badge ${row.cls}`}>
-										{classLabels[row.cls]}
-									</span>
-								</td>
-								<td>{cell(row.live)}</td>
-								<td>{cell(row.deadShort)}</td>
-								<td>{cell(row.deadLong)}</td>
-								<td>{cell(row.ek)}</td>
-								<td>{cell(row.tho)}</td>
-								<td>{cell(row.tri)}</td>
-								<td>{cell(row.chattawa)}</td>
-							</tr>
-						))}
-					</tbody>
-				</table>
-			</div>
+			<h3 className="tone-subhead">Resulting tone</h3>
+			<ToneTable withExamples={false} />
+
+			<h3 className="tone-subhead">With example words</h3>
+			<ToneTable withExamples={true} />
+
 			<p className="tone-note">
-				A syllable is “dead” when it ends in a short vowel or a stop sound
-				(p, t, k); otherwise it is “live”. Mai tri อ๊ and mai chattawa อ๋ are
-				only used with middle-class consonants.
+				Mai tri อ๊ and mai chattawa อ๋ are only used with middle-class
+				consonants. Table after Ratraykha Ritthisorn (2002).
 			</p>
 
 			<h3 className="tone-subhead">Consonant classes</h3>
