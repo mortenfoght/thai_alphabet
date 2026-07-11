@@ -119,6 +119,29 @@
 	font-size: 1.2rem;
 }
 
+/* Top-left home button (shown on every view except the lobby) */
+.home-btn {
+	position: absolute;
+	top: 1rem;
+	left: 1rem;
+	z-index: 10;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	padding: 0;
+	border: none;
+	border-radius: 0.5rem;
+	background: rgba(248, 250, 252, 0.08);
+	color: #f8fafc;
+	cursor: pointer;
+}
+
+.home-btn:hover {
+	background: rgba(248, 250, 252, 0.16);
+}
+
 /* Top-right burger menu */
 .topbar {
 	position: absolute;
