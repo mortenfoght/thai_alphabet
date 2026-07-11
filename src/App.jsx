@@ -3,6 +3,7 @@ import RandomLetter from "./RandomLetter";
 import ConsonantTable from "./ConsonantTable";
 import VowelTable from "./VowelTable";
 import NumberFlashcard from "./NumberFlashcard";
+import NumberTable from "./NumberTable";
 import "./App.css";
 
 const views = [
@@ -10,6 +11,7 @@ const views = [
 	{ id: "table", label: "Consonant Table", Component: ConsonantTable },
 	{ id: "vowels", label: "Vowel Table", Component: VowelTable },
 	{ id: "numbers", label: "Numbers", Component: NumberFlashcard },
+	{ id: "numbertable", label: "Number Table", Component: NumberTable },
 ];
 
 function App()

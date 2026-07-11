@@ -1,13 +1,7 @@
 import { useState } from "react";
-import numbers from "./numbers";
+import numbers, { formatArabic } from "./numbers";
 import { shuffledDeck } from "./deck";
 import { speak, speechSupported, useVoiceWarmup } from "./speech";
-
-// Group the Arabic value in threes with spaces, e.g. 10000000 -> "10 000 000".
-function formatArabic(value)
-{
-	return value.toLocaleString("en-US").replaceAll(",", " ");
-}
 
 function NumberFlashcard()
 {

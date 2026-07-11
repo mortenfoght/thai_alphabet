@@ -219,3 +219,14 @@
 	color: #94a3b8;
 	font-style: italic;
 }
+
+.cell-number {
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+/* Let wide tables (e.g. the number table's four columns) scroll on narrow
+   screens instead of overflowing the viewport. */
+.table-scroll {
+	overflow-x: auto;
+}

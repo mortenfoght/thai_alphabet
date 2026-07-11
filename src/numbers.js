@@ -56,3 +56,9 @@ const numbers = [
 ];
 
 export default numbers;
+
+// Group the Arabic value in threes with spaces, e.g. 10000000 -> "10 000 000".
+export function formatArabic(value)
+{
+	return value.toLocaleString("en-US").replaceAll(",", " ");
+}
