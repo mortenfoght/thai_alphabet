@@ -513,6 +513,14 @@
 	margin-right: 0.35rem;
 }
 
+.finder-letters {
+	margin-top: 0.75rem;
+	font-size: 1.35rem;
+	letter-spacing: 0.1em;
+	line-height: 1.5;
+	color: #e2e8f0;
+}
+
 .finder-hint {
 	margin: 0.5rem 0 0;
 	color: #64748b;

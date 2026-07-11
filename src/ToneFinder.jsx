@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { resolveTone, toneThai } from "./toneRules";
+import { resolveTone, toneThai, lettersByClass } from "./toneRules";
 
 const classOptions = [
 	{ id: "middle", label: "Middle" },
@@ -57,6 +57,7 @@ function ToneFinder()
 			<div className="finder-group">
 				<p className="finder-label">Consonant class</p>
 				<Segmented options={classOptions} value={cls} onChange={setCls} />
+				<div className="finder-letters">{lettersByClass(cls).join(" ")}</div>
 			</div>
 
 			<div className="finder-group">
