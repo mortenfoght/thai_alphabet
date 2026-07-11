@@ -1,4 +1,5 @@
 import consonants from "./consonants";
+import { classLabels } from "./toneRules";
 import { speak, speechSupported } from "./speech";
 
 // consonants.js is already stored in Thai alphabetic order (ก … ฮ), so the
@@ -8,28 +9,36 @@ function ConsonantTable()
 	return (
 		<div className="table-view">
 			<h2 className="table-title">Thai Consonants</h2>
-			<table className="char-table">
-				<thead>
-					<tr>
-						<th>Letter</th>
-						<th>Name</th>
-						<th>Phonetic</th>
-					</tr>
-				</thead>
-				<tbody>
-					{consonants.map((c) => (
-						<tr
-							key={c.letter}
-							onClick={speechSupported ? () => speak(c.name) : undefined}
-							title={speechSupported ? "Tap to hear" : undefined}
-						>
-							<td className="cell-letter">{c.letter}</td>
-							<td className="cell-name">{c.name}</td>
-							<td className="cell-phonetic">{c.phonetic}</td>
+			<div className="table-scroll">
+				<table className="char-table">
+					<thead>
+						<tr>
+							<th>Letter</th>
+							<th>Name</th>
+							<th>Phonetic</th>
+							<th>Class</th>
 						</tr>
-					))}
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						{consonants.map((c) => (
+							<tr
+								key={c.letter}
+								onClick={speechSupported ? () => speak(c.name) : undefined}
+								title={speechSupported ? "Tap to hear" : undefined}
+							>
+								<td className="cell-letter">{c.letter}</td>
+								<td className="cell-name">{c.name}</td>
+								<td className="cell-phonetic">{c.phonetic}</td>
+								<td>
+									<span className={`class-badge ${c.class}`}>
+										{classLabels[c.class]}
+									</span>
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
 		</div>
 	);
 }

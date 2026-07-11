@@ -63,6 +63,22 @@ function Lobby({ onNavigate })
 					onClick={() => onNavigate("numbertable")}
 				/>
 			</div>
+
+			<p className="lobby-section">Tones</p>
+			<div className="lobby-cards">
+				<LobbyCard
+					glyph="ก่"
+					title="Tone rules"
+					sub="Class, syllable and mark to tone"
+					onClick={() => onNavigate("tonerules")}
+				/>
+				<LobbyCard
+					glyph="ก้"
+					title="Tone finder"
+					sub="Work out any syllable's tone"
+					onClick={() => onNavigate("tonefinder")}
+				/>
+			</div>
 		</div>
 	);
 }

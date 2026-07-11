@@ -5,6 +5,8 @@ import ConsonantTable from "./ConsonantTable";
 import VowelTable from "./VowelTable";
 import NumberFlashcard from "./NumberFlashcard";
 import NumberTable from "./NumberTable";
+import ToneRulesTable from "./ToneRulesTable";
+import ToneFinder from "./ToneFinder";
 import "./App.css";
 
 const views = [
@@ -14,6 +16,8 @@ const views = [
 	{ id: "vowels", label: "Vowel Table", Component: VowelTable },
 	{ id: "numbers", label: "Numbers", Component: NumberFlashcard },
 	{ id: "numbertable", label: "Number Table", Component: NumberTable },
+	{ id: "tonerules", label: "Tone Rules", Component: ToneRulesTable },
+	{ id: "tonefinder", label: "Tone Finder", Component: ToneFinder },
 ];
 
 function App()
