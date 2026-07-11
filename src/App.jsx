@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Lobby from "./Lobby";
 import RandomLetter from "./RandomLetter";
 import ConsonantTable from "./ConsonantTable";
 import VowelTable from "./VowelTable";
@@ -7,6 +8,7 @@ import NumberTable from "./NumberTable";
 import "./App.css";
 
 const views = [
+	{ id: "home", label: "Home", Component: Lobby },
 	{ id: "random", label: "Random Letter", Component: RandomLetter },
 	{ id: "table", label: "Consonant Table", Component: ConsonantTable },
 	{ id: "vowels", label: "Vowel Table", Component: VowelTable },
@@ -16,7 +18,7 @@ const views = [
 
 function App()
 {
-	const [viewId, setViewId] = useState("random");
+	const [viewId, setViewId] = useState("home");
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	function choose(id)
@@ -63,7 +65,7 @@ function App()
 				></div>
 			) : null}
 			<main className="view">
-				<Current />
+				<Current onNavigate={choose} />
 			</main>
 		</div>
 	);
