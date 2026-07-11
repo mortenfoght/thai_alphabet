@@ -1,25 +1,11 @@
 import { useState } from "react";
 import consonants from "./consonants";
+import { shuffledDeck } from "./deck";
 import { speak, speechSupported, useVoiceWarmup } from "./speech";
-
-function shuffledDeck(avoidFirst)
-{
-	const deck = consonants.map((_, i) => i);
-	for (let i = deck.length - 1; i > 0; i--)
-	{
-		const j = Math.floor(Math.random() * (i + 1));
-		[deck[i], deck[j]] = [deck[j], deck[i]];
-	}
-	if (deck.length > 1 && deck[0] === avoidFirst)
-	{
-		[deck[0], deck[1]] = [deck[1], deck[0]];
-	}
-	return deck;
-}
 
 function RandomLetter()
 {
-	const [deck, setDeck] = useState(() => shuffledDeck(-1));
+	const [deck, setDeck] = useState(() => shuffledDeck(consonants.length, -1));
 	const [pos, setPos] = useState(0);
 	const [showName, setShowName] = useState(false);
 
@@ -33,7 +19,7 @@ function RandomLetter()
 		}
 		else
 		{
-			setDeck(shuffledDeck(deck[pos]));
+			setDeck(shuffledDeck(consonants.length, deck[pos]));
 			setPos(0);
 		}
 		setShowName(false);

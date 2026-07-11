@@ -94,6 +94,30 @@
 	line-height: 1;
 }
 
+/* Number flashcard display */
+.number-display {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.75rem;
+	max-width: 100%;
+	padding: 0 1rem;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.number-arabic {
+	font-size: clamp(2.5rem, 11vw, 5rem);
+	font-weight: 600;
+	line-height: 1;
+}
+
+.number-thai {
+	font-size: clamp(2.2rem, 10vw, 4.5rem);
+	line-height: 1;
+	color: #38bdf8;
+}
+
 .name-slot {
 	min-height: 4.5rem;
 	display: flex;
@@ -121,7 +145,7 @@
 }
 
 .buttons button {
-	width: 10rem;
+	width: 11rem;
 	box-sizing: border-box;
 	font-size: 1.1rem;
 	padding: 0.75rem 1.5rem;
