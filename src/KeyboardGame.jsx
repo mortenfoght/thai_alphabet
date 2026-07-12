@@ -109,6 +109,15 @@ function KeyboardGame()
 		}
 		return Number(localStorage.getItem(HIGH_KEY)) || 0;
 	});
+	// Show the on-screen keyboard only on touch-primary devices (phone/tablet).
+	// On a computer the physical keyboard is used instead.
+	const [touch, setTouch] = useState(() => {
+		if (typeof window === "undefined" || !window.matchMedia)
+		{
+			return true;
+		}
+		return window.matchMedia("(pointer: coarse)").matches;
+	});
 
 	const tilesRef = useRef([]);
 	const scoreRef = useRef(0);
@@ -268,6 +277,18 @@ function KeyboardGame()
 
 	useEffect(() => () => clearTimeout(wrongTimer.current), []);
 
+	// React if the pointer type changes (e.g. a keyboard attached to a tablet).
+	useEffect(() => {
+		if (typeof window === "undefined" || !window.matchMedia)
+		{
+			return undefined;
+		}
+		const mq = window.matchMedia("(pointer: coarse)");
+		const handler = (e) => setTouch(e.matches);
+		mq.addEventListener("change", handler);
+		return () => mq.removeEventListener("change", handler);
+	}, []);
+
 	if (status !== "playing")
 	{
 		const over = status === "over";
@@ -326,7 +347,13 @@ function KeyboardGame()
 				<div className="miss-line" style={{ top: `${MISS_LINE}%` }}></div>
 			</div>
 
-			<Keyboard onKey={clearMatching} />
+			{touch ? (
+				<Keyboard onKey={clearMatching} />
+			) : (
+				<p className="game-hint">
+					Type the falling consonants on your keyboard.
+				</p>
+			)}
 		</div>
 	);
 }
