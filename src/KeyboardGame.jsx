@@ -17,6 +17,22 @@ const KEY_ROWS = [
 	[["ผ", "("], ["ป", ")"], ["แ", "ฉ"], ["อ", "ฮ"], ["ิ", "ฺ"], ["ื", "์"], ["ท", "?"], ["ม", "ฒ"], ["ใ", "ฬ"], ["ฝ", "ฦ"]],
 ];
 
+// Physical key codes aligned to KEY_ROWS, so pressing a QWERTY key clears the
+// Thai consonant printed on that key regardless of the OS keyboard layout —
+// no Thai layout required on a computer.
+const KEY_CODES = [
+	["Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9", "Digit0", "Minus", "Equal"],
+	["KeyQ", "KeyW", "KeyE", "KeyR", "KeyT", "KeyY", "KeyU", "KeyI", "KeyO", "KeyP", "BracketLeft", "BracketRight"],
+	["KeyA", "KeyS", "KeyD", "KeyF", "KeyG", "KeyH", "KeyJ", "KeyK", "KeyL", "Semicolon", "Quote"],
+	["KeyZ", "KeyX", "KeyC", "KeyV", "KeyB", "KeyN", "KeyM", "Comma", "Period", "Slash"],
+];
+const codeMap = {};
+KEY_ROWS.forEach((row, r) => {
+	row.forEach((pair, c) => {
+		codeMap[KEY_CODES[r][c]] = pair;
+	});
+});
+
 const MISS_LINE = 90; // percent of the play-area height
 const HIGH_KEY = "thaiKbGameHigh";
 
@@ -222,7 +238,8 @@ function KeyboardGame()
 		return () => cancelAnimationFrame(rafRef.current);
 	}, [status, endGame]);
 
-	// Physical keyboard: on a Thai layout, pressing the ก key sends "ก".
+	// Physical keyboard: match on the physical key position (event.code), so a
+	// normal QWERTY keyboard works with no Thai layout — the D key clears ก, etc.
 	useEffect(() => {
 		if (status !== "playing")
 		{
@@ -233,10 +250,16 @@ function KeyboardGame()
 			{
 				return;
 			}
-			if (letterSet.has(e.key))
+			const pair = codeMap[e.code];
+			if (!pair)
+			{
+				return;
+			}
+			const ch = e.shiftKey ? pair[1] : pair[0];
+			if (letterSet.has(ch))
 			{
 				e.preventDefault();
-				clearMatching([e.key]);
+				clearMatching([ch]);
 			}
 		};
 		window.addEventListener("keydown", onKey);
