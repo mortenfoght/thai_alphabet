@@ -5,6 +5,7 @@ import ConsonantTable from "./ConsonantTable";
 import VowelTable from "./VowelTable";
 import NumberFlashcard from "./NumberFlashcard";
 import NumberTable from "./NumberTable";
+import FinalConsonants from "./FinalConsonants";
 import ToneRulesTable from "./ToneRulesTable";
 import ToneFinder from "./ToneFinder";
 import "./App.css";
@@ -16,6 +17,7 @@ const views = [
 	{ id: "vowels", label: "Vowel Table", Component: VowelTable },
 	{ id: "numbers", label: "Numbers", Component: NumberFlashcard },
 	{ id: "numbertable", label: "Number Table", Component: NumberTable },
+	{ id: "finals", label: "Final Consonants", Component: FinalConsonants },
 	{ id: "tonerules", label: "Tone Rules", Component: ToneRulesTable },
 	{ id: "tonefinder", label: "Tone Finder", Component: ToneFinder },
 ];

@@ -62,6 +62,12 @@ function Lobby({ onNavigate })
 					sub="All 51 numbers with readings"
 					onClick={() => onNavigate("numbertable")}
 				/>
+				<LobbyCard
+					glyph="ง"
+					title="Final consonants"
+					sub="The 8 ending sounds"
+					onClick={() => onNavigate("finals")}
+				/>
 			</div>
 
 			<p className="lobby-section">Tones</p>
