@@ -39,6 +39,12 @@ function Lobby({ onNavigate })
 					sub="Number flashcards, 1 to 10 million"
 					onClick={() => onNavigate("numbers")}
 				/>
+				<LobbyCard
+					glyph="▶"
+					title="Keyboard game"
+					sub="Type the falling consonants"
+					onClick={() => onNavigate("game")}
+				/>
 			</div>
 
 			<p className="lobby-section">Reference</p>
