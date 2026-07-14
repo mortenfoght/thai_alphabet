@@ -678,6 +678,176 @@
 	color: #3f4c5f;
 }
 
+/* Consonant quiz */
+.quiz-view {
+	min-height: 100vh;
+	min-height: 100dvh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 480px;
+	margin: 0 auto;
+	padding: 4.5rem 1rem 2rem;
+	box-sizing: border-box;
+}
+
+.quiz-view.playing {
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: flex-start;
+	padding: 4.5rem 1rem 1.5rem;
+}
+
+.quiz-hud {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.quiz-errors {
+	display: flex;
+	align-items: center;
+}
+
+.err-dot {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	margin-left: 7px;
+	border: 1.5px solid #475569;
+	border-radius: 50%;
+}
+
+.err-dot.on {
+	background: #f87171;
+	border-color: #f87171;
+}
+
+.quiz-timer {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+	margin-top: 0.85rem;
+}
+
+.quiz-timer-num {
+	min-width: 1.6rem;
+	text-align: center;
+	font-size: 1rem;
+	font-weight: 500;
+	color: #94a3b8;
+}
+
+.quiz-timer-bar {
+	flex: 1;
+	height: 6px;
+	border-radius: 999px;
+	background: #1e293b;
+	overflow: hidden;
+}
+
+.quiz-timer-fill {
+	height: 100%;
+	border-radius: 999px;
+	background: #38bdf8;
+	transition: width 0.1s linear;
+}
+
+.quiz-timer-fill.low {
+	background: #f87171;
+}
+
+.quiz-main {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1.75rem;
+}
+
+.quiz-consonant {
+	font-size: 8rem;
+	line-height: 1;
+}
+
+.quiz-choices {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	width: 100%;
+	max-width: 340px;
+}
+
+.quiz-choice {
+	padding: 0.9rem 1rem;
+	border: 0.5px solid #334155;
+	border-radius: 12px;
+	background: #1e293b;
+	color: #f8fafc;
+	font-family: inherit;
+	font-size: 1.2rem;
+	cursor: pointer;
+	transition: background 0.12s, border-color 0.12s;
+}
+
+.quiz-choice:hover:not(:disabled) {
+	border-color: #38bdf8;
+}
+
+.quiz-choice:disabled {
+	cursor: default;
+}
+
+.quiz-choice.correct {
+	background: rgba(52, 211, 153, 0.18);
+	border-color: #34d399;
+	color: #6ee7b7;
+}
+
+.quiz-choice.wrong {
+	background: rgba(248, 113, 113, 0.18);
+	border-color: #f87171;
+	color: #fca5a5;
+}
+
+.quiz-feedback {
+	min-height: 1.5rem;
+	font-size: 1.1rem;
+	font-weight: 500;
+}
+
+.quiz-feedback.correct {
+	color: #6ee7b7;
+}
+
+.quiz-feedback.wrong {
+	color: #fca5a5;
+}
+
+.quiz-again {
+	margin: 1rem 0 0;
+	color: #94a3b8;
+}
+
+.quiz-yesno {
+	display: flex;
+	justify-content: center;
+	gap: 0.75rem;
+	margin-top: 1.25rem;
+}
+
+.game-btn.ghost {
+	background: transparent;
+	border: 0.5px solid #475569;
+	color: #e2e8f0;
+}
+
+.game-btn.ghost:hover {
+	background: #1e293b;
+	border-color: #38bdf8;
+}
+
 /* Final consonants view */
 .finals-list {
 	display: flex;

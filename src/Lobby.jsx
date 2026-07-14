@@ -45,6 +45,12 @@ function Lobby({ onNavigate })
 					sub="Type the falling consonants"
 					onClick={() => onNavigate("game")}
 				/>
+				<LobbyCard
+					glyph="?"
+					title="Consonant quiz"
+					sub="Match the consonant to its sound"
+					onClick={() => onNavigate("quiz")}
+				/>
 			</div>
 
 			<p className="lobby-section">Reference</p>

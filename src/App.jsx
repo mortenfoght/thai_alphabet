@@ -2,6 +2,7 @@ import { useState } from "react";
 import Lobby from "./Lobby";
 import RandomLetter from "./RandomLetter";
 import KeyboardGame from "./KeyboardGame";
+import ConsonantQuiz from "./ConsonantQuiz";
 import ConsonantTable from "./ConsonantTable";
 import VowelTable from "./VowelTable";
 import NumberFlashcard from "./NumberFlashcard";
@@ -15,6 +16,7 @@ const views = [
 	{ id: "home", label: "Home", Component: Lobby },
 	{ id: "random", label: "Random Letter", Component: RandomLetter },
 	{ id: "game", label: "Keyboard Game", Component: KeyboardGame },
+	{ id: "quiz", label: "Consonant Quiz", Component: ConsonantQuiz },
 	{ id: "table", label: "Consonant Table", Component: ConsonantTable },
 	{ id: "vowels", label: "Vowel Table", Component: VowelTable },
 	{ id: "numbers", label: "Numbers", Component: NumberFlashcard },
