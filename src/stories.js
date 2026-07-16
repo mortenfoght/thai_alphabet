@@ -68,6 +68,17 @@ const stories = {
 				"My teacher is kind and makes lessons fun. I like Thai language class the most because I get to read stories.",
 			],
 		},
+		{
+			id: "breakfast",
+			title: "อาหาร เช้า",
+			titleEn: "Breakfast",
+			thai: [
+				"ทุก เช้า ฉัน กิน ข้าว ต้ม กับ ไข่ ต้ม. แม่ บอก ว่า อาหาร เช้า สำคัญ มาก ต่อ ร่างกาย. บางวัน ฉัน กิน ขนมปัง กับ นม สด แทน ข้าว ต้ม เพราะ ทำ ง่าย และ กิน เร็ว.",
+			],
+			english: [
+				"Every morning I eat rice porridge with a boiled egg. My mother says breakfast is very important for the body. Some days I eat bread with fresh milk instead of rice porridge because it's quick and easy.",
+			],
+		},
 	],
 	intermediate: [],
 	advanced: [],
