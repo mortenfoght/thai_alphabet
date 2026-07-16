@@ -53,6 +53,17 @@ function Lobby({ onNavigate })
 				/>
 			</div>
 
+			<p className="lobby-section">Reading</p>
+			<div className="lobby-cards">
+				<LobbyCard
+					glyph="อ่าน"
+					glyphSmall
+					title="Short stories"
+					sub="Read Thai at your level"
+					onClick={() => onNavigate("stories")}
+				/>
+			</div>
+
 			<p className="lobby-section">Reference</p>
 			<div className="lobby-cards">
 				<LobbyCard
