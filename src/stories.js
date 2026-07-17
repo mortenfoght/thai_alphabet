@@ -276,7 +276,158 @@ const stories = {
 			],
 		},
 	],
-	intermediate: [],
+	intermediate: [
+		{
+			id: "unexpected-journey",
+			title: "การเดินทางที่ไม่คาดคิด",
+			titleEn: "The unexpected journey",
+			thai: [
+				"สมชายวางแผนเดินทางไปประชุมที่กรุงเทพฯ ด้วยเที่ยวบินเช้า แต่เมื่อไปถึงสนามบิน เขาพบว่าเที่ยวบินถูกยกเลิกเนื่องจากพายุฝนที่พัดผ่านเข้ามาอย่างกะทันหัน สายการบินแจ้งว่าต้องรอถึงบ่ายจึงจะมีเที่ยวบินถัดไป",
+				"ด้วยความจำเป็นที่ต้องเข้าประชุมให้ทันเวลา สมชายจึงตัดสินใจเปลี่ยนแผนโดยเลือกเดินทางด้วยรถไฟความเร็วสูงแทน แม้จะใช้เวลานานกว่าเครื่องบิน แต่เขาก็สามารถทำงานบนรถไฟไปพร้อมกันได้ ระหว่างทาง เขาได้พบกับนักธุรกิจอีกคนที่ประสบปัญหาเดียวกัน ทั้งสองพูดคุยแลกเปลี่ยนความคิดเห็นทางธุรกิจกันอย่างออกรส",
+				"สุดท้ายสมชายเดินทางไปถึงที่ประชุมได้ทันเวลาพอดี และยังได้คู่ค้าทางธุรกิจใหม่จากการพูดคุยบนรถไฟอีกด้วย เหตุการณ์ที่ไม่คาดคิดในวันนั้นกลับกลายเป็นโอกาสที่ดีอย่างไม่น่าเชื่อ",
+			],
+			english: [
+				"Somchai planned to travel to a meeting in Bangkok on a morning flight. But when he arrived at the airport, he found his flight had been cancelled due to a sudden storm. The airline announced the next available flight wouldn't be until the afternoon.",
+				"Since he had to make it to his meeting on time, Somchai decided to change plans and take the high-speed train instead. Even though it took longer than flying, he was able to work on the train at the same time. Along the way, he met another businessman facing the same problem, and the two of them had an engaging conversation exchanging business ideas.",
+				"In the end, Somchai reached his meeting exactly on time — and even gained a new business partner from the conversation on the train. The unexpected event that day turned out to be an incredibly good opportunity.",
+			],
+		},
+		{
+			id: "my-small-business",
+			title: "ธุรกิจเล็กๆของฉัน",
+			titleEn: "My small business",
+			thai: [
+				"สองปีก่อน ฉันตัดสินใจลาออกจากงานประจำเพื่อเปิดร้านกาแฟเล็ก ๆ ของตัวเอง หลายคนบอกว่าเสี่ยงเกินไป แต่ฉันเชื่อว่าถ้าตั้งใจทำจริง ผลลัพธ์ก็ต้องออกมาดี",
+				"ช่วงเดือนแรก ๆ ลูกค้าน้อยมากจนแทบไม่พอจ่ายค่าเช่าร้าน ฉันต้องปรับสูตรกาแฟหลายครั้งและเรียนรู้การตลาดผ่านสื่อสังคมออนไลน์ด้วยตัวเอง ค่อย ๆ สร้างฐานลูกค้าประจำผ่านการพูดคุยและให้บริการอย่างจริงใจ",
+				"ทุกวันนี้ร้านกาแฟของฉันมีลูกค้าประจำมากขึ้นเรื่อย ๆ และเริ่มมีกำไรพอที่จะขยายสาขาที่สอง ประสบการณ์ครั้งนี้สอนให้ฉันรู้ว่าความอดทนและความสม่ำเสมอสำคัญกว่าความสำเร็จที่รวดเร็ว",
+			],
+			english: [
+				"Two years ago, I decided to quit my full-time job to open my own small coffee shop. Many people told me it was too risky, but I believed that if I worked hard, the results would turn out well.",
+				"In the first few months, I had so few customers I could barely cover the rent. I had to adjust my coffee recipe many times and taught myself marketing through social media. I gradually built a base of regular customers through genuine conversation and sincere service.",
+				"Today, my coffee shop has more and more regular customers, and it's starting to make enough profit to expand to a second location. This experience taught me that patience and consistency matter more than quick success.",
+			],
+		},
+		{
+			id: "technology-changes-lives",
+			title: "เทคโนโลยีเปลี่ยนชีวิต",
+			titleEn: "Technology changed her life",
+			thai: [
+				"ก่อนหน้านี้ คุณสมหญิงเป็นแม่ค้าขายผักในตลาดสดมากว่าสิบปี รายได้ขึ้นอยู่กับจำนวนลูกค้าที่เดินผ่านหน้าร้านเท่านั้น จนกระทั่งลูกสาวแนะนำให้เธอเริ่มขายของผ่านแอปพลิเคชันส่งอาหารและสื่อสังคมออนไลน์",
+				"แรก ๆ คุณสมหญิงไม่ค่อยเข้าใจวิธีใช้งานและกลัวว่าจะทำผิดพลาด แต่ลูกสาวช่วยสอนทุกขั้นตอนอย่างใจเย็น ไม่นานคุณสมหญิงก็เริ่มถ่ายรูปผักสวย ๆ และโพสต์ขายทุกเช้า ลูกค้าใหม่จากนอกพื้นที่เริ่มสั่งซื้อเข้ามาเรื่อย ๆ",
+				"ภายในหนึ่งปี รายได้ของคุณสมหญิงเพิ่มขึ้นเป็นสองเท่า เธอบอกว่าเทคโนโลยีที่เคยดูยากและน่ากลัว กลับกลายเป็นเครื่องมือที่เปลี่ยนชีวิตเธอไปในทางที่ดีขึ้นอย่างไม่คาดคิด",
+			],
+			english: [
+				"Before, Mrs. Somying had been a vegetable vendor at the fresh market for over ten years. Her income depended entirely on how many customers walked past her stall — until her daughter suggested she start selling through food delivery apps and social media.",
+				"At first, Mrs. Somying didn't really understand how to use the technology and was afraid of making mistakes, but her daughter patiently taught her every step. Before long, she started taking pretty photos of her vegetables and posting them for sale every morning. New customers from outside the area kept placing orders.",
+				"Within a year, her income had doubled. She says the technology that once seemed difficult and intimidating turned out to be a tool that changed her life for the better in ways she never expected.",
+			],
+		},
+		{
+			id: "boxers-dream",
+			title: "ความฝันของนักมวย",
+			titleEn: "A boxer's dream",
+			thai: [
+				"เด็กชายวัยสิบสี่ปีคนหนึ่งเติบโตมาในหมู่บ้านเล็ก ๆ ทางภาคอีสาน เขาฝันอยากเป็นนักมวยไทยระดับโลกมาตั้งแต่จำความได้ ทุกเช้าก่อนไปโรงเรียน เขาจะวิ่งรอบหมู่บ้านและฝึกชกกระสอบทรายที่ผูกไว้ใต้ต้นมะขาม",
+				"ครอบครัวของเขาไม่มีเงินพอส่งเขาไปฝึกที่ค่ายมวยใหญ่ในเมือง เขาจึงฝึกเองโดยดูวิดีโอจากอินเทอร์เน็ตและขอคำแนะนำจากนักมวยรุ่นพี่ในหมู่บ้าน แม้บางครั้งจะรู้สึกท้อแท้เมื่อแพ้การแข่งขัน แต่เขาไม่เคยคิดจะเลิก",
+				"หลังฝึกฝนมานานหลายปี เขาได้รับโอกาสไปทดสอบฝีมือที่ค่ายมวยในกรุงเทพฯ และผ่านการคัดเลือกเข้าเป็นนักมวยอาชีพในที่สุด ความฝันที่ดูเหมือนไกลเกินเอื้อม กลายเป็นความจริงได้ด้วยความพยายามที่ไม่ย่อท้อ",
+			],
+			english: [
+				"A fourteen-year-old boy grew up in a small village in the northeast. He had dreamed of becoming a world-class Muay Thai fighter for as long as he could remember. Every morning before school, he would run around the village and practice punching a sandbag tied under a tamarind tree.",
+				"His family couldn't afford to send him to train at a big gym in the city, so he trained himself, watching videos online and asking senior fighters in the village for advice. Even though he sometimes felt discouraged after losing matches, he never once thought about quitting.",
+				"After years of training, he was given the chance to try out at a gym in Bangkok and was eventually selected to become a professional fighter. A dream that once seemed impossibly out of reach became reality through unwavering effort.",
+			],
+		},
+		{
+			id: "first-investment",
+			title: "การลงทุนครั้งแรก",
+			titleEn: "The first investment",
+			thai: [
+				"เมื่อสามปีก่อน ธนาเริ่มสนใจเรื่องคริปโทเคอร์เรนซีหลังจากอ่านข่าวเกี่ยวกับราคาบิตคอยน์ที่พุ่งสูงขึ้นอย่างรวดเร็ว ด้วยความอยากรู้และอยากลองทำกำไร เขาจึงนำเงินเก็บทั้งหมดไปลงทุนโดยไม่ได้ศึกษาข้อมูลอย่างรอบคอบ",
+				"ไม่นานหลังจากนั้น ตลาดคริปโทปรับตัวลงอย่างหนัก เงินลงทุนของธนาลดลงไปกว่าครึ่ง เขารู้สึกเครียดและเสียใจมาก แต่แทนที่จะถอนเงินออกทั้งหมด เขาเลือกที่จะศึกษาความรู้เรื่องการวิเคราะห์ตลาดและการบริหารความเสี่ยงอย่างจริงจังมากขึ้น",
+				"หลังจากนั้นธนาเริ่มลงทุนอย่างมีแผนและกระจายความเสี่ยงมากขึ้น แม้ผลตอบแทนจะไม่หวือหวาเหมือนช่วงแรก แต่เขารู้สึกมั่นคงและเข้าใจตลาดมากขึ้น เขามักบอกเพื่อน ๆ ว่าบทเรียนราคาแพงในครั้งนั้นสอนให้เขาเป็นนักลงทุนที่รอบคอบขึ้นอย่างมาก",
+			],
+			english: [
+				"Three years ago, Thana became interested in cryptocurrency after reading news about Bitcoin's rapidly rising price. Out of curiosity and a desire to make quick profits, he invested all his savings without carefully researching first.",
+				"Not long after, the crypto market crashed hard, and his investment lost more than half its value. He felt stressed and devastated, but instead of withdrawing everything, he chose to seriously study market analysis and risk management.",
+				"After that, Thana began investing with a plan and diversifying his risk more carefully. Even though the returns weren't as dramatic as before, he felt more stable and understood the market better. He often tells his friends that the expensive lesson from that time taught him to become a far more careful investor.",
+			],
+		},
+		{
+			id: "foreign-friend",
+			title: "เพื่อนต่างชาติ",
+			titleEn: "A foreign friend",
+			thai: [
+				"ปีที่แล้ว มีนักเรียนแลกเปลี่ยนจากประเทศเยอรมนีชื่อลูคัสมาเรียนที่โรงเรียนของฉันเป็นเวลาหนึ่งปี ตอนแรกเขาพูดภาษาไทยไม่ได้เลยและดูเหมือนจะเก็บตัวอยู่คนเดียวบ่อย ๆ",
+				"ฉันตัดสินใจเข้าไปทำความรู้จักและชวนเขาไปกินข้าวกับกลุ่มเพื่อน เราสอนภาษาไทยง่าย ๆ ให้เขา ส่วนเขาก็สอนภาษาเยอรมันให้เราเป็นการแลกเปลี่ยน แม้บางครั้งจะสื่อสารกันลำบากเพราะใช้ภาษาอังกฤษปนกัน แต่ทุกคนก็สนุกกับการเรียนรู้วัฒนธรรมของกันและกัน",
+				"เมื่อถึงเวลาที่ลูคัสต้องกลับประเทศ ทุกคนรู้สึกใจหายและร้องไห้ในวันอำลา เราสัญญากันว่าจะติดต่อกันตลอด และหวังว่าสักวันจะได้ไปเยี่ยมเขาที่เยอรมนีบ้าง มิตรภาพข้ามวัฒนธรรมครั้งนี้สอนให้ฉันเข้าใจโลกกว้างขึ้นมาก",
+			],
+			english: [
+				"Last year, an exchange student from Germany named Lukas came to study at my school for a year. At first, he couldn't speak any Thai at all and often seemed to keep to himself.",
+				"I decided to get to know him and invited him to eat with our group of friends. We taught him simple Thai, and in exchange, he taught us some German. Even though communication was sometimes difficult since we mixed in English, everyone had fun learning about each other's culture.",
+				"When it was time for Lukas to return home, everyone felt heartbroken and cried on the day of farewell. We promised to stay in touch and hoped to visit him in Germany someday. This cross-cultural friendship taught me to understand the world much more broadly.",
+			],
+		},
+		{
+			id: "lessons-from-failure",
+			title: "บทเรียนจากความล้มเหลว",
+			titleEn: "Lessons from failure",
+			thai: [
+				"วิชัยเปิดร้านอาหารตามความฝันของตัวเองหลังจากเก็บเงินมานานหลายปี เขาลงทุนตกแต่งร้านอย่างสวยงามและจ้างพนักงานหลายคน แต่ด้วยความไม่มีประสบการณ์ด้านการบริหาร ร้านของเขาขาดทุนต่อเนื่องภายในเวลาไม่ถึงหนึ่งปี",
+				"การปิดร้านทำให้วิชัยรู้สึกล้มเหลวอย่างมาก เขาเก็บตัวอยู่บ้านนานหลายเดือนและไม่กล้าเริ่มต้นทำอะไรใหม่ อย่างไรก็ตาม เพื่อนสนิทคนหนึ่งชักชวนให้เขาไปทำงานเป็นพนักงานในร้านอาหารของคนอื่นเพื่อเรียนรู้ระบบการบริหารจริง ๆ",
+				"หลังจากทำงานเก็บประสบการณ์อยู่สองปี วิชัยเปิดร้านอาหารใหม่อีกครั้งพร้อมความรู้และความเข้าใจที่มากขึ้น คราวนี้ร้านของเขาประสบความสำเร็จและมีลูกค้าประจำมากมาย วิชัยบอกเสมอว่าความล้มเหลวครั้งแรกคือครูที่ดีที่สุดที่เขาเคยมี",
+			],
+			english: [
+				"Wichai opened a restaurant to fulfill his own dream after saving money for many years. He invested heavily in beautiful décor and hired several staff, but due to his lack of management experience, the restaurant kept losing money and closed within less than a year.",
+				"Closing the restaurant made Wichai feel like a complete failure. He stayed home for months, afraid to start anything new. However, a close friend convinced him to work as an employee at someone else's restaurant to really learn how the management system worked.",
+				"After two years of gaining experience, Wichai opened a new restaurant with much greater knowledge and understanding. This time, his restaurant succeeded and gained many regular customers. Wichai always says his first failure was the best teacher he ever had.",
+			],
+		},
+		{
+			id: "the-town-that-changed",
+			title: "เมืองที่เปลี่ยนไป",
+			titleEn: "The town that changed",
+			thai: [
+				"เมื่อสิบปีก่อน หมู่บ้านเล็ก ๆ แห่งนี้ยังเป็นพื้นที่เกษตรกรรมที่เงียบสงบ ผู้คนส่วนใหญ่ทำนาและเลี้ยงสัตว์เป็นอาชีพหลัก แต่หลังจากมีการสร้างถนนใหญ่เชื่อมต่อกับตัวเมือง ทุกอย่างก็เริ่มเปลี่ยนไปอย่างรวดเร็ว",
+				"โรงงานและห้างสรรพสินค้าเริ่มเข้ามาตั้งอยู่ในพื้นที่ ที่ดินราคาสูงขึ้นหลายเท่าตัว ชาวบ้านหลายคนขายที่นาให้กับนักลงทุนและเปลี่ยนอาชีพไปทำงานในโรงงานแทน แม้รายได้จะมั่นคงขึ้น แต่วิถีชีวิตแบบเดิมที่เคยเรียบง่ายก็หายไปพร้อมกับความเปลี่ยนแปลงนี้",
+				"ทุกวันนี้ เมื่อคนรุ่นเก่ามองย้อนไปยังอดีต หลายคนรู้สึกคิดถึงความสงบและความผูกพันในชุมชนแบบเก่า แม้จะยอมรับว่าความสะดวกสบายในปัจจุบันดีขึ้นในหลายด้าน แต่สิ่งที่สูญเสียไปก็ไม่สามารถเรียกกลับคืนมาได้อีก",
+			],
+			english: [
+				"Ten years ago, this small village was still a quiet agricultural area. Most people farmed rice fields and raised livestock as their main occupation. But after a large road was built connecting it to the city, everything began to change rapidly.",
+				"Factories and shopping malls started moving into the area, and land prices rose many times over. Many villagers sold their rice fields to investors and switched to factory work instead. Although their income became more stable, the simple way of life they once had disappeared along with this change.",
+				"Today, when older generations look back on the past, many feel nostalgic for the peace and close-knit community of before. Even though they admit today's conveniences are better in many ways, what was lost can never be brought back.",
+			],
+		},
+		{
+			id: "holiday-like-no-other",
+			title: "วันหยุดที่ไม่เหมือนใคร",
+			titleEn: "A holiday like no other",
+			thai: [
+				"ปกติแล้ว ครอบครัวของอรุณจะไปเที่ยวทะเลทุกปีในช่วงวันหยุดยาว แต่ปีนี้ลูกชายคนโตเสนอให้ลองทำสิ่งที่แตกต่างออกไปบ้าง นั่นคือการไปเป็นอาสาสมัครสอนหนังสือให้เด็ก ๆ ในพื้นที่ห่างไกลทางภาคเหนือ",
+				"ตอนแรกอรุณค่อนข้างลังเล เพราะไม่คุ้นเคยกับการเดินทางไปพื้นที่ที่ไม่มีสิ่งอำนวยความสะดวกมากนัก แต่เมื่อไปถึง เธอกลับพบว่าเด็ก ๆ ในหมู่บ้านมีความกระตือรือร้นในการเรียนรู้อย่างมาก แม้จะขาดแคลนอุปกรณ์การเรียนก็ตาม ทั้งครอบครัวช่วยกันสอนหนังสือ เล่นเกม และทำกิจกรรมร่วมกับเด็ก ๆ ตลอดทั้งสัปดาห์",
+				"ก่อนกลับบ้าน เด็ก ๆ พากันมาส่งพร้อมของขวัญที่ทำด้วยมือ อรุณรู้สึกซาบซึ้งใจมากกว่าการไปเที่ยวทะเลครั้งใดที่ผ่านมา เธอตัดสินใจว่าจะทำกิจกรรมแบบนี้กับครอบครัวเป็นประจำทุกปีต่อจากนี้ไป",
+			],
+			english: [
+				"Normally, Arun's family goes to the beach every year during the long holidays. But this year, her eldest son suggested trying something different — volunteering to teach children in a remote area in the north.",
+				"At first, Arun was quite hesitant, since she wasn't used to traveling to places without many conveniences. But when they arrived, she found the village children were incredibly enthusiastic about learning, even with a lack of school supplies. The whole family spent the week teaching, playing games, and doing activities together with the children.",
+				"Before leaving, the children came to see them off with handmade gifts. Arun felt more touched than she ever had on any beach trip before. She decided the family would make this kind of activity a yearly tradition from now on.",
+			],
+		},
+		{
+			id: "difficult-decision",
+			title: "การตัดสินใจที่ยากลำบาก",
+			titleEn: "A difficult decision",
+			thai: [
+				"สุพรเป็นพนักงานบริษัทมาสิบกว่าปี วันหนึ่งเขาได้รับข้อเสนองานใหม่จากบริษัทต่างประเทศที่ให้เงินเดือนสูงกว่าเดิมมาก แต่ต้องย้ายไปทำงานที่ต่างประเทศเป็นเวลาอย่างน้อยสามปี ซึ่งหมายความว่าเขาต้องทิ้งครอบครัวและเพื่อนสนิททั้งหมดไว้ที่นี่",
+				"หลายคืนสุพรนอนไม่หลับเพราะครุ่นคิดถึงข้อดีข้อเสียของทั้งสองทางเลือก ครอบครัวของเขาบอกว่าพร้อมสนับสนุนไม่ว่าเขาจะเลือกทางไหน แต่สุดท้ายการตัดสินใจก็ต้องเป็นของเขาเอง เขาจึงลองเขียนรายการสิ่งที่สำคัญที่สุดในชีวิตออกมาทีละข้อ",
+				"ในที่สุด สุพรเลือกที่จะปฏิเสธข้อเสนองานใหม่ เพราะเห็นว่าความสัมพันธ์ในครอบครัวและความสุขในชีวิตประจำวันมีค่ามากกว่าเงินเดือนที่สูงขึ้น แม้บางครั้งเขาจะยังคิดถึงโอกาสที่พลาดไป แต่เขาไม่เคยเสียใจกับการตัดสินใจในวันนั้นเลย",
+			],
+			english: [
+				"Suporn had worked for the company for over ten years. One day he received a job offer from a foreign company with a much higher salary, but it required moving abroad for at least three years — meaning he would have to leave his family and all his close friends behind.",
+				"For many nights, Suporn couldn't sleep, weighing the pros and cons of both choices. His family said they would support whatever he decided, but ultimately the decision had to be his own. So he tried writing down, one by one, the things that mattered most in his life.",
+				"In the end, Suporn decided to turn down the new job offer, realizing that family relationships and everyday happiness meant more to him than a higher salary. Even though he sometimes still thinks about the opportunity he missed, he has never regretted his decision that day.",
+			],
+		},
+	],
 	advanced: [],
 };
 
