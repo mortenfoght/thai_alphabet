@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Lobby from "./Lobby";
+import { PracticeHub, ReferenceHub, TonesHub } from "./Hub";
 import RandomLetter from "./RandomLetter";
 import KeyboardGame from "./KeyboardGame";
 import ConsonantQuiz from "./ConsonantQuiz";
@@ -28,6 +29,15 @@ const views = [
 	{ id: "tonefinder", label: "Tone Finder", Component: ToneFinder },
 ];
 
+// Second-level hub screens reached only from Home's three explore cards.
+// Kept out of `views` (which also drives the burger menu) so the burger
+// menu keeps listing the flat set of leaf destinations, unchanged.
+const hubViews = [
+	{ id: "practice", Component: PracticeHub },
+	{ id: "reference", Component: ReferenceHub },
+	{ id: "tones", Component: TonesHub },
+];
+
 function App()
 {
 	const [viewId, setViewId] = useState("home");
@@ -39,7 +49,7 @@ function App()
 		setMenuOpen(false);
 	}
 
-	const Current = views.find((v) => v.id === viewId).Component;
+	const Current = [...views, ...hubViews].find((v) => v.id === viewId).Component;
 
 	return (
 		<div className="app">

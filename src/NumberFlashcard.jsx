@@ -52,11 +52,12 @@ function NumberFlashcard()
 				) : null}
 			</div>
 			<div className="buttons">
-				<button type="button" onClick={handleNext}>
+				<button type="button" className="primary" onClick={handleNext}>
 					Next
 				</button>
 				<button
 					type="button"
+					className="secondary"
 					onClick={handleHear}
 					disabled={!speechSupported}
 					title={
@@ -67,7 +68,7 @@ function NumberFlashcard()
 				>
 					Hear
 				</button>
-				<button type="button" onClick={handleShowPhonetic}>
+				<button type="button" className="secondary" onClick={handleShowPhonetic}>
 					Show Phonetic
 				</button>
 			</div>

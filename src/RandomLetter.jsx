@@ -49,11 +49,12 @@ function RandomLetter()
 				) : null}
 			</div>
 			<div className="buttons">
-				<button type="button" onClick={handleNext}>
+				<button type="button" className="primary" onClick={handleNext}>
 					Next
 				</button>
 				<button
 					type="button"
+					className="secondary"
 					onClick={handleHear}
 					disabled={!speechSupported}
 					title={
@@ -64,7 +65,7 @@ function RandomLetter()
 				>
 					Hear
 				</button>
-				<button type="button" onClick={handleShowName}>
+				<button type="button" className="secondary" onClick={handleShowName}>
 					Show Name
 				</button>
 			</div>

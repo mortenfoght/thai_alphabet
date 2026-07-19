@@ -1,7 +1,16 @@
-function LobbyCard({ glyph, glyphSmall, title, sub, onClick })
+export function LobbyCard({ glyph, glyphSmall, title, sub, accent, large, onClick })
 {
+	const classes = ["lobby-card"];
+	if (accent)
+	{
+		classes.push(`accent-${accent}`);
+	}
+	if (large)
+	{
+		classes.push("large");
+	}
 	return (
-		<button type="button" className="lobby-card" onClick={onClick}>
+		<button type="button" className={classes.join(" ")} onClick={onClick}>
 			<span className={glyphSmall ? "lobby-glyph small" : "lobby-glyph"}>
 				{glyph}
 			</span>
@@ -14,98 +23,55 @@ function LobbyCard({ glyph, glyphSmall, title, sub, onClick })
 	);
 }
 
-// The home screen. `onNavigate` switches the active view by its id.
+// The home screen. `onNavigate` switches the active view by its id. Three
+// explore cards lead to the Practice/Reference/Tones hub screens (see
+// Hub.jsx), which in turn list the actual leaf views.
 function Lobby({ onNavigate })
 {
 	return (
 		<div className="lobby">
 			<div className="lobby-hero">
-				<div className="lobby-flourish">ก ข ค</div>
-				<h1 className="lobby-title">Learn Thai</h1>
-				<p className="lobby-subtitle">Consonants, vowels and numbers</p>
+				<div className="lobby-flourish">
+					<svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true">
+						<rect
+							x="4"
+							y="4"
+							width="16"
+							height="16"
+							rx="2"
+							transform="rotate(45 12 12)"
+							fill="var(--gold)"
+						/>
+					</svg>
+				</div>
+				<h1 className="lobby-title">Aksara</h1>
+				<p className="lobby-subtitle">อักษร · read Thai, beautifully</p>
 			</div>
 
-			<p className="lobby-section">Practice</p>
 			<div className="lobby-cards">
 				<LobbyCard
+					large
+					accent="gold"
 					glyph="ก"
-					title="Random letter"
-					sub="Consonant flashcards, shuffled"
-					onClick={() => onNavigate("random")}
+					title="Practice"
+					sub="Flashcards, quiz, keyboard game and stories"
+					onClick={() => onNavigate("practice")}
 				/>
 				<LobbyCard
-					glyph="๕"
-					title="Numbers"
-					sub="Number flashcards, 1 to 10 million"
-					onClick={() => onNavigate("numbers")}
-				/>
-				<LobbyCard
-					glyph="▶"
-					title="Keyboard game"
-					sub="Type the falling consonants"
-					onClick={() => onNavigate("game")}
-				/>
-				<LobbyCard
-					glyph="?"
-					title="Consonant quiz"
-					sub="Match the consonant to its sound"
-					onClick={() => onNavigate("quiz")}
-				/>
-			</div>
-
-			<p className="lobby-section">Reading</p>
-			<div className="lobby-cards">
-				<LobbyCard
-					glyph="อ่าน"
-					glyphSmall
-					title="Short stories"
-					sub="Read Thai at your level"
-					onClick={() => onNavigate("stories")}
-				/>
-			</div>
-
-			<p className="lobby-section">Reference</p>
-			<div className="lobby-cards">
-				<LobbyCard
+					large
+					accent="ochre"
 					glyph="ช"
-					title="Consonant table"
-					sub="All 44 consonants in order"
-					onClick={() => onNavigate("table")}
+					title="Reference"
+					sub="Consonants, vowels, numbers and finals"
+					onClick={() => onNavigate("reference")}
 				/>
 				<LobbyCard
-					glyph="เอ"
-					title="Vowel table"
-					sub="The 32 traditional vowels"
-					onClick={() => onNavigate("vowels")}
-				/>
-				<LobbyCard
-					glyph="๑๐"
-					glyphSmall
-					title="Number table"
-					sub="All 51 numbers with readings"
-					onClick={() => onNavigate("numbertable")}
-				/>
-				<LobbyCard
-					glyph="ง"
-					title="Final consonants"
-					sub="The 8 ending sounds"
-					onClick={() => onNavigate("finals")}
-				/>
-			</div>
-
-			<p className="lobby-section">Tones</p>
-			<div className="lobby-cards">
-				<LobbyCard
+					large
+					accent="jungle"
 					glyph="ก่"
-					title="Tone rules"
-					sub="Class, syllable and mark to tone"
-					onClick={() => onNavigate("tonerules")}
-				/>
-				<LobbyCard
-					glyph="ก้"
-					title="Tone finder"
-					sub="Work out any syllable's tone"
-					onClick={() => onNavigate("tonefinder")}
+					title="Tones"
+					sub="Class and syllable rules, plus a tone finder"
+					onClick={() => onNavigate("tones")}
 				/>
 			</div>
 		</div>

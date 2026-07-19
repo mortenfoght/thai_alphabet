@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Design source material (prototypes, brand book, screenshots) — not app code
+learn thai site/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
