@@ -85,10 +85,6 @@ function TopNav({ viewId, onNavigate })
 						))}
 					</nav>
 
-					<button type="button" className="nav-cta" onClick={() => go("random")}>
-						Start practicing
-					</button>
-
 					<button
 						type="button"
 						className="nav-hamburger"
@@ -142,13 +138,6 @@ function TopNav({ viewId, onNavigate })
 
 				{mobileOpen ? (
 					<div className="nav-mobile-panel">
-						<button
-							type="button"
-							className="nav-cta nav-cta-mobile"
-							onClick={() => go("random")}
-						>
-							Start practicing
-						</button>
 						{navCategories.map((cat) => (
 							<div key={cat.id} className="nav-accordion-section">
 								<button
