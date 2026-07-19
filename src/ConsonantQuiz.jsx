@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import consonants from "./consonants";
 import { shuffledDeck } from "./deck";
+import { listenThai, matchesConsonant, recognitionSupported } from "./speech";
 
 const TIME_LIMIT = 10; // seconds to answer each letter
+const SPEAK_ATTEMPTS = 3; // spoken tries allowed per letter before it counts as an error
 
 // Build three phonic choices for a consonant: the correct one plus two random
 // distractors, shuffled.
@@ -36,6 +38,7 @@ function makeChoices(idx)
 function ConsonantQuiz({ onNavigate })
 {
 	const [status, setStatus] = useState("idle");
+	const [mode, setMode] = useState("tap"); // "tap" | "speak"
 	const [deck, setDeck] = useState([]);
 	const [pos, setPos] = useState(0);
 	const [score, setScore] = useState(0);
@@ -46,6 +49,25 @@ function ConsonantQuiz({ onNavigate })
 	// Guards a question against being answered twice (e.g. a click landing at
 	// the same moment the timer runs out).
 	const answered = useRef(false);
+	const [listening, setListening] = useState(false);
+	const [speakAttempt, setSpeakAttempt] = useState(1);
+	const speakAttemptRef = useRef(1);
+	const [speakMsg, setSpeakMsg] = useState("");
+	// Tracks the in-flight recognition session (if any) so it can be aborted
+	// if the component unmounts mid-listen (e.g. the user hits Home).
+	const recognitionRef = useRef(null);
+	const mounted = useRef(true);
+
+	useEffect(() => {
+		return () => {
+			mounted.current = false;
+			if (recognitionRef.current)
+			{
+				recognitionRef.current.abort();
+				recognitionRef.current = null;
+			}
+		};
+	}, []);
 
 	function start()
 	{
@@ -58,6 +80,10 @@ function ConsonantQuiz({ onNavigate })
 		setReveal(null);
 		setTimeLeft(TIME_LIMIT);
 		setChoices(makeChoices(d[0]));
+		setListening(false);
+		speakAttemptRef.current = 1;
+		setSpeakAttempt(1);
+		setSpeakMsg("");
 		setStatus("playing");
 	}
 
@@ -65,6 +91,9 @@ function ConsonantQuiz({ onNavigate })
 	{
 		answered.current = false;
 		setReveal(null);
+		speakAttemptRef.current = 1;
+		setSpeakAttempt(1);
+		setSpeakMsg("");
 		if (nextPos >= d.length)
 		{
 			setStatus("won");
@@ -118,11 +147,109 @@ function ConsonantQuiz({ onNavigate })
 		}
 	}
 
+	// Records a spoken miss (wrong transcript, or silence/timeout that leaves
+	// nothing usable to judge): uses up one of the three attempts, or — on
+	// the third — counts as a single game error, same as a tap-mode timeout.
+	// Reads/writes speakAttemptRef so the decision and the update share one
+	// source of truth instead of racing a state closure.
+	function registerSpeakMiss(heardLabel)
+	{
+		const current = consonants[deck[pos]];
+		if (speakAttemptRef.current >= SPEAK_ATTEMPTS)
+		{
+			answered.current = true;
+			fail(
+				{ picked: heardLabel, correct: current.name, wrong: true },
+				errors + 1
+			);
+		}
+		else
+		{
+			speakAttemptRef.current += 1;
+			setSpeakAttempt(speakAttemptRef.current);
+			setSpeakMsg(
+				heardLabel
+					? `Heard "${heardLabel}" — try again.`
+					: "Didn't hear anything — try again."
+			);
+		}
+	}
+
+	// Speak mode: listen for one spoken attempt at the current consonant's
+	// name. A match behaves like a correct tap; a miss uses up one of the
+	// three spoken attempts before counting as a single game error.
+	async function listen()
+	{
+		if (listening || reveal || answered.current)
+		{
+			return;
+		}
+		setListening(true);
+		setSpeakMsg("");
+		const current = consonants[deck[pos]];
+		try
+		{
+			const alternatives = await listenThai({
+				onStart: (recognition) => {
+					recognitionRef.current = recognition;
+				},
+			});
+			recognitionRef.current = null;
+			if (!mounted.current)
+			{
+				return;
+			}
+			setListening(false);
+			const heard = alternatives.find((t) => matchesConsonant(t, current));
+			if (heard)
+			{
+				answered.current = true;
+				setScore((s) => s + 1);
+				setReveal({ picked: heard, correct: current.name, wrong: false });
+				setTimeout(() => advance(pos + 1, deck), 700);
+			}
+			else
+			{
+				registerSpeakMiss(alternatives[0]);
+			}
+		}
+		catch (err)
+		{
+			recognitionRef.current = null;
+			if (!mounted.current)
+			{
+				return;
+			}
+			setListening(false);
+			if (err.message === "not-allowed")
+			{
+				setSpeakMsg("Microphone access denied — allow it in your browser to use Speak mode.");
+			}
+			else if (err.message === "audio-capture")
+			{
+				setSpeakMsg("No microphone found — check your device and try again.");
+			}
+			else if (err.message === "network")
+			{
+				setSpeakMsg("Couldn't reach speech recognition — check your connection and try again.");
+			}
+			else if (err.message === "no-speech" || err.message === "aborted")
+			{
+				registerSpeakMiss(null);
+			}
+			else
+			{
+				setSpeakMsg("Couldn't recognise that — tap the mic and try again.");
+			}
+		}
+	}
+
 	// Countdown timer: 10 seconds per letter. Reaching 0 counts as a wrong
-	// guess. Runs only while a fresh question is on screen (not during the
-	// reveal, start, game-over or win screens).
+	// guess. Runs only while a fresh question is on screen in Tap mode (not
+	// during the reveal, start, game-over, win screens, or Speak mode, which
+	// paces itself by spoken attempts instead of a clock).
 	useEffect(() => {
-		if (status !== "playing" || reveal)
+		if (status !== "playing" || reveal || mode === "speak")
 		{
 			return undefined;
 		}
@@ -149,7 +276,7 @@ function ConsonantQuiz({ onNavigate })
 			);
 		}, 100);
 		return () => clearInterval(id);
-	}, [status, pos, reveal, deck, errors]);
+	}, [status, pos, reveal, deck, errors, mode]);
 
 	if (status === "idle")
 	{
@@ -158,8 +285,32 @@ function ConsonantQuiz({ onNavigate })
 				<div className="game-card">
 					<h2 className="game-title">Consonant Quiz</h2>
 					<p className="game-lead">
-						A Thai consonant appears with three sounds — tap the one that
-						matches. Three wrong answers ends the game.
+						{mode === "tap"
+							? "A Thai consonant appears with three sounds — tap the one that matches."
+							: "A Thai consonant appears — say its name out loud. You get three tries per letter."}{" "}
+						Three wrong answers ends the game.
+					</p>
+					<div className="quiz-mode-toggle">
+						<button
+							type="button"
+							className={`quiz-mode-btn${mode === "tap" ? " active" : ""}`}
+							onClick={() => setMode("tap")}
+						>
+							Tap
+						</button>
+						<button
+							type="button"
+							className={`quiz-mode-btn${mode === "speak" ? " active" : ""}`}
+							onClick={() => setMode("speak")}
+							disabled={!recognitionSupported}
+						>
+							Speak
+						</button>
+					</div>
+					<p className="quiz-mode-hint">
+						{recognitionSupported
+							? "Speak mode works best in Chrome (desktop or Android). Safari and Firefox don't support Thai voice recognition yet."
+							: "Speak mode needs Chrome (desktop or Android) — it isn't supported in this browser."}
 					</p>
 					<button type="button" className="game-btn" onClick={start}>
 						Play
@@ -247,53 +398,75 @@ function ConsonantQuiz({ onNavigate })
 				</div>
 			</div>
 
-			<div className="quiz-timer">
-				<span className="quiz-timer-num">
-					{Math.max(0, Math.ceil(timeLeft))}
-				</span>
-				<div className="quiz-timer-bar">
-					<div
-						className={`quiz-timer-fill${timeLeft <= 3 ? " low" : ""}`}
-						style={{ width: `${(Math.max(0, timeLeft) / TIME_LIMIT) * 100}%` }}
-					></div>
+			{mode === "tap" && (
+				<div className="quiz-timer">
+					<span className="quiz-timer-num">
+						{Math.max(0, Math.ceil(timeLeft))}
+					</span>
+					<div className="quiz-timer-bar">
+						<div
+							className={`quiz-timer-fill${timeLeft <= 3 ? " low" : ""}`}
+							style={{ width: `${(Math.max(0, timeLeft) / TIME_LIMIT) * 100}%` }}
+						></div>
+					</div>
 				</div>
-			</div>
+			)}
 
 			<div className="quiz-main">
 				<div className="quiz-consonant">{current.letter}</div>
-				<div className="quiz-choices">
-					{choices.map((c) => {
-						let cls = "quiz-choice";
-						if (reveal)
-						{
-							if (c.letter === reveal.correct)
+				{mode === "tap" ? (
+					<div className="quiz-choices">
+						{choices.map((c) => {
+							let cls = "quiz-choice";
+							if (reveal)
 							{
-								cls += " correct";
+								if (c.letter === reveal.correct)
+								{
+									cls += " correct";
+								}
+								else if (c.letter === reveal.picked)
+								{
+									cls += " wrong";
+								}
 							}
-							else if (c.letter === reveal.picked)
-							{
-								cls += " wrong";
-							}
-						}
-						return (
-							<button
-								key={c.letter}
-								type="button"
-								className={cls}
-								disabled={Boolean(reveal)}
-								onClick={() => pick(c)}
-							>
-								{c.phonetic}
-							</button>
-						);
-					})}
-				</div>
+							return (
+								<button
+									key={c.letter}
+									type="button"
+									className={cls}
+									disabled={Boolean(reveal)}
+									onClick={() => pick(c)}
+								>
+									{c.phonetic}
+								</button>
+							);
+						})}
+					</div>
+				) : (
+					<div className="quiz-speak">
+						<button
+							type="button"
+							className={`quiz-mic${listening ? " listening" : ""}`}
+							disabled={Boolean(reveal) || listening}
+							onClick={listen}
+						>
+							{listening ? "Listening…" : "🎤 Tap to speak"}
+						</button>
+						<p className="quiz-speak-hint">Say the consonant's name out loud.</p>
+						{speakMsg && !reveal && <p className="quiz-speak-msg">{speakMsg}</p>}
+						<p className="quiz-attempt">
+							Attempt {speakAttempt} of {SPEAK_ATTEMPTS}
+						</p>
+					</div>
+				)}
 				<div className={`quiz-feedback${reveal ? (reveal.wrong ? " wrong" : " correct") : ""}`}>
 					{reveal
 						? reveal.timedOut
 							? "Time's up!"
 							: reveal.wrong
-								? "Wrong choice"
+								? mode === "speak"
+									? `Correct answer: ${reveal.correct}`
+									: "Wrong choice"
 								: "Correct"
 						: ""}
 				</div>

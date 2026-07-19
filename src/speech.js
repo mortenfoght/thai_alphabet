@@ -76,6 +76,77 @@ export function speak(text)
 	}
 }
 
+const SpeechRecognitionCtor =
+	typeof window !== "undefined" &&
+	(window.SpeechRecognition || window.webkitSpeechRecognition);
+
+export const recognitionSupported = Boolean(SpeechRecognitionCtor);
+
+// Runs one speech-recognition attempt and resolves with the ranked list of
+// transcripts the engine heard, or rejects with an Error whose message is
+// the engine's error code ("no-speech", "not-allowed", "network", ...).
+// `onStart` receives the live recognition instance as soon as it is created,
+// so a caller can stash it (e.g. in a ref) and call `.abort()` from outside —
+// needed to stop the mic if the UI navigates away mid-listen.
+export function listenThai({ timeoutMs = 6000, onStart } = {})
+{
+	return new Promise((resolve, reject) => {
+		if (!recognitionSupported)
+		{
+			reject(new Error("unsupported"));
+			return;
+		}
+		const recognition = new SpeechRecognitionCtor();
+		recognition.lang = "th-TH";
+		recognition.maxAlternatives = 5;
+		recognition.interimResults = false;
+
+		if (onStart)
+		{
+			onStart(recognition);
+		}
+
+		// Some engines never fire onend after a silent mic, so force a stop.
+		const timeout = setTimeout(() => recognition.abort(), timeoutMs);
+
+		recognition.onresult = (event) => {
+			clearTimeout(timeout);
+			resolve(Array.from(event.results[0]).map((r) => r.transcript));
+		};
+		recognition.onerror = (event) => {
+			clearTimeout(timeout);
+			reject(new Error(event.error || "recognition-error"));
+		};
+		recognition.start();
+	});
+}
+
+function normalizeThai(text)
+{
+	return text.replace(/\s+/g, "").trim();
+}
+
+// A Thai consonant's spoken name is its letter plus an example word (e.g.
+// "ก ไก่"). ASR engines often catch the word clearly but mangle the bare
+// consonant sound, so a heard transcript counts as a match if it lines up
+// with the full name or with the example word alone.
+export function matchesConsonant(transcript, consonant)
+{
+	const heard = normalizeThai(transcript);
+	if (!heard)
+	{
+		return false;
+	}
+	const full = normalizeThai(consonant.name);
+	const word = normalizeThai(consonant.name.split(" ").slice(1).join(" "));
+	return (
+		heard === full ||
+		(word && heard === word) ||
+		(word && heard.includes(word)) ||
+		full.includes(heard)
+	);
+}
+
 // Voice lists load asynchronously in some browsers; touching getVoices() and
 // listening for the change event warms them up before first use.
 export function useVoiceWarmup()
