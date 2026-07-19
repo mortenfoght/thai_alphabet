@@ -335,10 +335,13 @@
 	left: 0;
 	right: 0;
 	top: 100%;
+	max-height: calc(100vh - var(--nav-height));
+	overflow-y: auto;
 	background: var(--panel);
 	border-bottom: 0.5px solid var(--border);
 	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
 	padding: 1.5rem;
+	box-sizing: border-box;
 }
 
 .nav-dropdown-group {
