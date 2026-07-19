@@ -23,9 +23,8 @@ export function LobbyCard({ glyph, glyphSmall, title, sub, accent, large, onClic
 	);
 }
 
-// The home screen. `onNavigate` switches the active view by its id. Three
-// explore cards lead to the Practice/Reference/Tones hub screens (see
-// Hub.jsx), which in turn list the actual leaf views.
+// The home screen. Navigation now lives entirely in the top nav's mega-menu
+// (see TopNav.jsx / navCategories.js); this is just the landing hero.
 function Lobby({ onNavigate })
 {
 	return (
@@ -36,33 +35,15 @@ function Lobby({ onNavigate })
 				</div>
 				<h1 className="lobby-title">Learn Thai</h1>
 				<p className="lobby-subtitle">Consonants, vowels and numbers</p>
-			</div>
-
-			<div className="lobby-cards">
-				<LobbyCard
-					large
-					accent="gold"
-					glyph="ก"
-					title="Practice"
-					sub="Flashcards, quiz, keyboard game and stories"
-					onClick={() => onNavigate("practice")}
-				/>
-				<LobbyCard
-					large
-					accent="ochre"
-					glyph="ช"
-					title="Reference"
-					sub="Consonants, vowels, numbers and finals"
-					onClick={() => onNavigate("reference")}
-				/>
-				<LobbyCard
-					large
-					accent="jungle"
-					glyph="ก่"
-					title="Tones"
-					sub="Class and syllable rules, plus a tone finder"
-					onClick={() => onNavigate("tones")}
-				/>
+				<div className="buttons">
+					<button
+						type="button"
+						className="primary"
+						onClick={() => onNavigate("random")}
+					>
+						Start practicing
+					</button>
+				</div>
 			</div>
 		</div>
 	);
