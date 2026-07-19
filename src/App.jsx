@@ -5,11 +5,13 @@ import RandomLetter from "./RandomLetter";
 import KeyboardGame from "./KeyboardGame";
 import ConsonantQuiz from "./ConsonantQuiz";
 import ShortStories from "./ShortStories";
+import ClassifierFlashcard from "./ClassifierFlashcard";
 import ConsonantTable from "./ConsonantTable";
 import VowelTable from "./VowelTable";
 import NumberFlashcard from "./NumberFlashcard";
 import NumberTable from "./NumberTable";
 import FinalConsonants from "./FinalConsonants";
+import ClassifierTable from "./ClassifierTable";
 import ToneRulesTable from "./ToneRulesTable";
 import ToneFinder from "./ToneFinder";
 import "./App.css";
@@ -20,11 +22,13 @@ const views = [
 	{ id: "game", label: "Keyboard Game", Component: KeyboardGame },
 	{ id: "quiz", label: "Consonant Quiz", Component: ConsonantQuiz },
 	{ id: "stories", label: "Short Stories", Component: ShortStories },
+	{ id: "classifiers", label: "Classifiers", Component: ClassifierFlashcard },
 	{ id: "table", label: "Consonant Table", Component: ConsonantTable },
 	{ id: "vowels", label: "Vowel Table", Component: VowelTable },
 	{ id: "numbers", label: "Numbers", Component: NumberFlashcard },
 	{ id: "numbertable", label: "Number Table", Component: NumberTable },
 	{ id: "finals", label: "Final Consonants", Component: FinalConsonants },
+	{ id: "classifiertable", label: "Classifier Table", Component: ClassifierTable },
 	{ id: "tonerules", label: "Tone Rules", Component: ToneRulesTable },
 	{ id: "tonefinder", label: "Tone Finder", Component: ToneFinder },
 ];

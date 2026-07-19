@@ -30,6 +30,7 @@ const practiceItems = [
 	{ id: "game", glyph: "▶", title: "Keyboard game", sub: "Type the falling consonants" },
 	{ id: "quiz", glyph: "?", title: "Consonant quiz", sub: "Match the consonant to its sound" },
 	{ id: "stories", glyph: "อ่าน", glyphSmall: true, title: "Short stories", sub: "Read Thai at your level" },
+	{ id: "classifiers", glyph: "คน", glyphSmall: true, title: "Classifiers", sub: "Practice the counter word for each noun" },
 ];
 
 const referenceItems = [
@@ -37,6 +38,7 @@ const referenceItems = [
 	{ id: "vowels", glyph: "เอ", title: "Vowel table", sub: "The 32 traditional vowels" },
 	{ id: "numbertable", glyph: "๑๐", glyphSmall: true, title: "Number table", sub: "All 51 numbers with readings" },
 	{ id: "finals", glyph: "ง", title: "Final consonants", sub: "The 8 ending sounds" },
+	{ id: "classifiertable", glyph: "ใบ", glyphSmall: true, title: "Classifier table", sub: "Every counter word, grouped by what it counts" },
 ];
 
 const tonesItems = [

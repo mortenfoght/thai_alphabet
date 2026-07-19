@@ -309,6 +309,27 @@
 	font-family: "Noto Serif Thai", serif;
 }
 
+/* Classifier flashcard: classifiers run 2-4 characters (unlike the single
+   consonant glyph above), so this scales down with viewport width instead
+   of using a fixed size, to avoid overflow on narrow screens. */
+.classifier-glyph {
+	font-size: clamp(3rem, 16vw, 7rem);
+	line-height: 1.2;
+	text-align: center;
+	padding: 0 1rem;
+	font-family: "Noto Serif Thai", serif;
+}
+
+.classifier-example {
+	font-size: 1.1rem;
+	color: var(--text-secondary);
+}
+
+.classifier-example-gloss {
+	color: var(--text-muted);
+	font-style: italic;
+}
+
 /* Number flashcard display */
 .number-display {
 	display: flex;
