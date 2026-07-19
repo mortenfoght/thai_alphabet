@@ -44,8 +44,8 @@ function Lobby({ onNavigate })
 						/>
 					</svg>
 				</div>
-				<h1 className="lobby-title">Aksara</h1>
-				<p className="lobby-subtitle">อักษร · read Thai, beautifully</p>
+				<h1 className="lobby-title">Learn Thai</h1>
+				<p className="lobby-subtitle">Consonants, vowels and numbers</p>
 			</div>
 
 			<div className="lobby-cards">
