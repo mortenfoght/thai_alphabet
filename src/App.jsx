@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Lobby from "./Lobby";
 import TopNav from "./TopNav";
+import Breadcrumb from "./Breadcrumb";
 import RandomLetter from "./RandomLetter";
 import KeyboardGame from "./KeyboardGame";
 import ConsonantQuiz from "./ConsonantQuiz";
@@ -42,6 +43,7 @@ function App()
 	return (
 		<div className="app">
 			<TopNav viewId={viewId} onNavigate={setViewId} />
+			<Breadcrumb viewId={viewId} onNavigate={setViewId} />
 			<main className="view">
 				<Current onNavigate={setViewId} />
 			</main>

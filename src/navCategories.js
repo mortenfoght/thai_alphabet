@@ -75,3 +75,26 @@ const navCategories = [
 ];
 
 export default navCategories;
+
+// Given a leaf view's id, returns { categoryLabel, groupLabel, itemTitle }
+// for breadcrumb display, or null if the id has no entry (e.g. "home", or a
+// "coming soon" category with no real ids yet).
+export function findBreadcrumb(viewId)
+{
+	for (const cat of navCategories)
+	{
+		if (!cat.groups)
+		{
+			continue;
+		}
+		for (const group of cat.groups)
+		{
+			const item = group.items.find((i) => i.id === viewId);
+			if (item)
+			{
+				return { categoryLabel: cat.label, groupLabel: group.label, itemTitle: item.title };
+			}
+		}
+	}
+	return null;
+}
