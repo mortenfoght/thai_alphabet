@@ -32,17 +32,7 @@ function Lobby({ onNavigate })
 		<div className="lobby">
 			<div className="lobby-hero">
 				<div className="lobby-flourish">
-					<svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true">
-						<rect
-							x="4"
-							y="4"
-							width="16"
-							height="16"
-							rx="2"
-							transform="rotate(45 12 12)"
-							fill="var(--gold)"
-						/>
-					</svg>
+					<span className="brand-mark" aria-hidden="true">ก</span>
 				</div>
 				<h1 className="lobby-title">Learn Thai</h1>
 				<p className="lobby-subtitle">Consonants, vowels and numbers</p>

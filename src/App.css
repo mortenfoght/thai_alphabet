@@ -43,6 +43,20 @@
 	justify-content: center;
 }
 
+.brand-mark {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 48px;
+	height: 48px;
+	border-radius: 14px;
+	background: rgba(224, 172, 46, 0.16);
+	color: var(--gold);
+	font-family: "Noto Serif Thai", serif;
+	font-weight: 700;
+	font-size: 1.6rem;
+}
+
 .lobby-title {
 	margin: 0.75rem 0 0.35rem;
 	font-size: 2.2rem;
