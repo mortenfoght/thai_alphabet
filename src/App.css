@@ -1664,6 +1664,98 @@
 	font-size: 1.1rem;
 }
 
+/* Long-form article page (About Thailand). Wider reading column than the
+   reference tables, with prose rhythm and an inline citation-link style. */
+.article {
+	max-width: 720px;
+	margin: 0 auto;
+	padding: 2rem 1.15rem 3.5rem;
+	color: var(--text-primary);
+	line-height: 1.7;
+}
+
+.article-title {
+	margin: 0 0 1rem;
+	font-family: "Frank Ruhl Libre", serif;
+	font-weight: 600;
+	font-size: 2rem;
+}
+
+.article-lead {
+	margin: 0 0 2rem;
+	color: var(--text-secondary);
+	font-size: 1.05rem;
+}
+
+.article-heading {
+	margin: 2.5rem 0 1rem;
+	padding-bottom: 0.4rem;
+	border-bottom: 1px solid var(--border);
+	font-family: "Frank Ruhl Libre", serif;
+	font-weight: 600;
+	font-size: 1.4rem;
+	color: var(--gold);
+}
+
+.article p {
+	margin: 0 0 1.15rem;
+	color: var(--text-primary);
+}
+
+.article strong {
+	color: var(--text-primary);
+	font-weight: 600;
+}
+
+.article-note,
+.article-footnote {
+	color: var(--text-secondary);
+	font-size: 0.9rem;
+}
+
+.article-footnote {
+	margin-top: 2.5rem;
+	padding-top: 1rem;
+	border-top: 1px solid var(--border);
+	font-style: italic;
+}
+
+.article-src {
+	color: var(--aqua);
+	text-decoration: none;
+}
+
+.article-src:hover {
+	color: var(--aqua-hover);
+	text-decoration: underline;
+}
+
+/* Two-column key/value quick-facts table. */
+.facts-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 0 0 1.25rem;
+}
+
+.facts-table th,
+.facts-table td {
+	padding: 0.7rem 0.9rem;
+	border-bottom: 1px solid var(--panel);
+	text-align: left;
+	vertical-align: top;
+}
+
+.facts-table th {
+	width: 34%;
+	color: var(--text-secondary);
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+.facts-table td {
+	color: var(--text-primary);
+}
+
 /* First responsive breakpoint in this file: below this width the top nav's
    category row collapses into a hamburger-triggered accordion drawer. */
 @media (max-width: 760px) {
@@ -1678,5 +1770,9 @@
 
 	.nav-mobile-panel {
 		display: block;
+	}
+
+	.facts-table th {
+		white-space: normal;
 	}
 }

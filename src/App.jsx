@@ -15,6 +15,7 @@ import FinalConsonants from "./FinalConsonants";
 import ClassifierTable from "./ClassifierTable";
 import ToneRulesTable from "./ToneRulesTable";
 import ToneFinder from "./ToneFinder";
+import AboutThailand from "./AboutThailand";
 import "./App.css";
 
 const views = [
@@ -32,6 +33,7 @@ const views = [
 	{ id: "classifiertable", Component: ClassifierTable },
 	{ id: "tonerules", Component: ToneRulesTable },
 	{ id: "tonefinder", Component: ToneFinder },
+	{ id: "about", Component: AboutThailand },
 ];
 
 function App()

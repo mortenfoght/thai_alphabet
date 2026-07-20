@@ -23,8 +23,12 @@ function Breadcrumb({ viewId, onNavigate })
 			</button>
 			<span className="breadcrumb-sep" aria-hidden="true">/</span>
 			<span>{trail.categoryLabel}</span>
-			<span className="breadcrumb-sep" aria-hidden="true">/</span>
-			<span>{trail.groupLabel}</span>
+			{trail.groupLabel ? (
+				<>
+					<span className="breadcrumb-sep" aria-hidden="true">/</span>
+					<span>{trail.groupLabel}</span>
+				</>
+			) : null}
 			<span className="breadcrumb-sep" aria-hidden="true">/</span>
 			<span className="breadcrumb-current">{trail.itemTitle}</span>
 		</nav>

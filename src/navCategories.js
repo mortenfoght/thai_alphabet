@@ -65,8 +65,8 @@ const navCategories = [
 		id: "about",
 		label: "About Thailand",
 		accent: "jungle",
-		comingSoon: true,
 		items: [
+			{ id: "about", glyph: "🇹🇭", title: "About Thailand", sub: "Geography, history, politics & economy" },
 			{ title: "Regions & geography", sub: "Coming soon" },
 			{ title: "Culture & customs", sub: "Coming soon" },
 			{ title: "Festivals", sub: "Coming soon" },
@@ -76,24 +76,31 @@ const navCategories = [
 
 export default navCategories;
 
-// Given a leaf view's id, returns { categoryLabel, groupLabel, itemTitle }
-// for breadcrumb display, or null if the id has no entry (e.g. "home", or a
-// "coming soon" category with no real ids yet).
+// Given a leaf view's id, returns { categoryLabel, groupLabel, itemTitle } for
+// breadcrumb display, or null if the id has no entry (e.g. "home", or a "coming
+// soon" placeholder with no real id yet). `groupLabel` is omitted for flat
+// categories that have no Practice/Reference/Tones sub-grouping.
 export function findBreadcrumb(viewId)
 {
 	for (const cat of navCategories)
 	{
-		if (!cat.groups)
+		if (cat.groups)
 		{
+			for (const group of cat.groups)
+			{
+				const item = group.items.find((i) => i.id === viewId);
+				if (item)
+				{
+					return { categoryLabel: cat.label, groupLabel: group.label, itemTitle: item.title };
+				}
+			}
 			continue;
 		}
-		for (const group of cat.groups)
+
+		const item = cat.items.find((i) => i.id === viewId);
+		if (item)
 		{
-			const item = group.items.find((i) => i.id === viewId);
-			if (item)
-			{
-				return { categoryLabel: cat.label, groupLabel: group.label, itemTitle: item.title };
-			}
+			return { categoryLabel: cat.label, itemTitle: item.title };
 		}
 	}
 	return null;
