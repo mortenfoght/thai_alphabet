@@ -1862,6 +1862,20 @@
 	color: var(--jungle);
 }
 
+/* "More in <Category>" related-articles list at the foot of each article. */
+.article-related {
+	margin-top: 2.5rem;
+}
+
+.article-related-list {
+	margin: 0;
+	padding-left: 1.25rem;
+}
+
+.article-related-list li {
+	margin: 0 0 0.5rem;
+}
+
 /* Inline text button used in "not found" fallbacks. */
 .link-button {
 	border: none;

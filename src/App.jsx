@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Lobby from "./Lobby";
 import TopNav from "./TopNav";
 import Breadcrumb from "./Breadcrumb";
@@ -19,6 +19,8 @@ import AboutThailand from "./AboutThailand";
 import ThailandCategory from "./ThailandCategory";
 import ThailandArticle from "./ThailandArticle";
 import { parseThailandView } from "./thailandContent";
+import { pathToViewId, viewIdToPath } from "./routes";
+import { applySeo } from "./applySeo";
 import "./App.css";
 
 const views = [
@@ -62,23 +64,58 @@ function renderView(viewId, onNavigate)
 	return <Current onNavigate={onNavigate} />;
 }
 
-function App()
+// Read the current path — from the browser on the client, or the server-supplied
+// initialPath during prerendering.
+function currentPath(initialPath)
 {
-	const [viewId, setViewId] = useState("home");
+	if (typeof window !== "undefined")
+	{
+		return window.location.pathname;
+	}
+	return initialPath || "/";
+}
 
-	// Scroll back to the top whenever the screen changes — the long-form About
-	// Thailand articles in particular should always open at their title.
+function App({ initialPath })
+{
+	const [viewId, setViewId] = useState(() => pathToViewId(currentPath(initialPath)));
+
+	// Navigate: update state AND push a real URL so every screen is a shareable,
+	// crawlable address and the browser back/forward buttons work.
+	const navigate = useCallback((id) =>
+	{
+		setViewId(id);
+		if (typeof window !== "undefined")
+		{
+			const path = viewIdToPath(id);
+			if (window.location.pathname !== path)
+			{
+				window.history.pushState({}, "", path);
+			}
+		}
+	}, []);
+
+	// Sync state with the URL on back/forward.
+	useEffect(() =>
+	{
+		const onPop = () => setViewId(pathToViewId(window.location.pathname));
+		window.addEventListener("popstate", onPop);
+		return () => window.removeEventListener("popstate", onPop);
+	}, []);
+
+	// On every view change: scroll to the top and refresh the document <head>
+	// SEO tags (title / meta / canonical / JSON-LD).
 	useEffect(() =>
 	{
 		window.scrollTo(0, 0);
+		applySeo(viewId);
 	}, [viewId]);
 
 	return (
 		<div className="app">
-			<TopNav viewId={viewId} onNavigate={setViewId} />
-			<Breadcrumb viewId={viewId} onNavigate={setViewId} />
+			<TopNav viewId={viewId} onNavigate={navigate} />
+			<Breadcrumb viewId={viewId} onNavigate={navigate} />
 			<main className="view">
-				{renderView(viewId, setViewId)}
+				{renderView(viewId, navigate)}
 			</main>
 		</div>
 	);
