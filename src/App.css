@@ -1756,6 +1756,169 @@
 	color: var(--text-primary);
 }
 
+/* About Thailand: article eyebrow (clickable category label above the title),
+   markdown prose, and the article footer nav. Reuses the .article wrapper. */
+.article-eyebrow {
+	display: inline-block;
+	margin: 0 0 0.6rem;
+	padding: 0;
+	border: none;
+	background: none;
+	color: var(--jungle);
+	font-family: inherit;
+	font-size: 0.8rem;
+	font-weight: 600;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+.article-eyebrow:hover {
+	text-decoration: underline;
+}
+
+/* Markdown-rendered article body (see Markdown.jsx). */
+.md-h2 {
+	margin: 2.5rem 0 1rem;
+	padding-bottom: 0.4rem;
+	border-bottom: 1px solid var(--border);
+	font-family: "Frank Ruhl Libre", serif;
+	font-weight: 600;
+	font-size: 1.4rem;
+	color: var(--gold);
+}
+
+.md-h3 {
+	margin: 1.75rem 0 0.75rem;
+	font-family: "Frank Ruhl Libre", serif;
+	font-weight: 600;
+	font-size: 1.12rem;
+	color: var(--text-primary);
+}
+
+.md-p {
+	margin: 0 0 1.15rem;
+	color: var(--text-primary);
+}
+
+.md-list {
+	margin: 0 0 1.15rem;
+	padding-left: 1.25rem;
+}
+
+.md-list li {
+	margin: 0 0 0.5rem;
+	color: var(--text-primary);
+}
+
+.md-link {
+	color: var(--aqua);
+	text-decoration: none;
+}
+
+.md-link:hover {
+	color: var(--aqua-hover);
+	text-decoration: underline;
+}
+
+.md-related {
+	margin-top: 2.5rem;
+	padding-top: 1rem;
+	border-top: 1px solid var(--border);
+	color: var(--text-secondary);
+	font-size: 0.9rem;
+}
+
+/* Article footer: back-to-category and next-article links. */
+.article-footer-nav {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 0.75rem;
+	margin-top: 2.5rem;
+	padding-top: 1.25rem;
+	border-top: 1px solid var(--border);
+}
+
+.article-nav-link {
+	border: 0.5px solid var(--border);
+	border-radius: 10px;
+	padding: 0.6rem 0.9rem;
+	background: var(--panel);
+	color: var(--text-primary);
+	font-family: inherit;
+	font-size: 0.9rem;
+	cursor: pointer;
+	transition: border-color 0.15s, background 0.15s;
+}
+
+.article-nav-link:hover {
+	border-color: var(--jungle);
+	background: var(--panel-alt);
+}
+
+.article-nav-link.next {
+	margin-left: auto;
+	color: var(--jungle);
+}
+
+/* Inline text button used in "not found" fallbacks. */
+.link-button {
+	border: none;
+	background: none;
+	padding: 0;
+	color: var(--aqua);
+	font-family: inherit;
+	font-size: inherit;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+/* Slight top spacing before the hub's category grid. */
+.about-category-grid {
+	margin-top: 1.25rem;
+}
+
+/* Clickable mega-menu group header (About Thailand category landings). */
+.nav-group-link {
+	border: none;
+	background: none;
+	font-family: inherit;
+	cursor: pointer;
+	transition: color 0.15s;
+}
+
+.nav-group-link:hover {
+	color: var(--jungle);
+}
+
+.lobby-section-link {
+	border: none;
+	background: none;
+	padding: 0;
+	font-family: inherit;
+	text-align: left;
+	cursor: pointer;
+}
+
+/* Breadcrumb: let each "/ segment" pair stay together and scroll horizontally
+   rather than overflowing the viewport on deep article trails. */
+.breadcrumb {
+	overflow-x: auto;
+}
+
+.breadcrumb-link,
+.breadcrumb-segment {
+	flex-shrink: 0;
+	white-space: nowrap;
+}
+
+.breadcrumb-segment {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
 /* First responsive breakpoint in this file: below this width the top nav's
    category row collapses into a hamburger-triggered accordion drawer. */
 @media (max-width: 760px) {

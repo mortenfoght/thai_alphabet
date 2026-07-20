@@ -1,7 +1,36 @@
-// The 4 top-nav mega-menu categories. `alphabet` wires to the app's 13 real
-// screens (grouped the same way the old Practice/Reference/Tones hubs were);
-// the other 3 are placeholders — real content is separate follow-up work.
-// Items with no `id` are non-navigable ("coming soon").
+import {
+	thailandCategories,
+	articlesByCategory,
+	articleViewId,
+	categoryViewId,
+	parseThailandView,
+	articleMap,
+	categoryMap,
+} from "./thailandContent";
+
+// The About Thailand mega-menu, built from the content registry: an Overview
+// group (the hub) followed by one group per category. Group `id`s point at the
+// category index page, so the group header itself is navigable (see TopNav).
+const aboutGroups = [
+	{
+		label: "Overview",
+		items: [
+			{ id: "about", title: "About Thailand", sub: "Overview & quick facts" },
+		],
+	},
+	...thailandCategories.map((cat) => ({
+		label: cat.label,
+		id: categoryViewId(cat.id),
+		items: articlesByCategory[cat.id].map((a) => ({
+			id: articleViewId(a.slug),
+			title: a.navLabel,
+		})),
+	})),
+];
+
+// The 4 top-nav mega-menu categories. `alphabet` and `about` wire to real
+// screens grouped into sections; `phrases` and `food` are placeholders whose
+// items have no `id` and render as non-navigable ("coming soon").
 const navCategories = [
 	{
 		id: "alphabet",
@@ -65,42 +94,74 @@ const navCategories = [
 		id: "about",
 		label: "About Thailand",
 		accent: "jungle",
-		items: [
-			{ id: "about", glyph: "🇹🇭", title: "About Thailand", sub: "Geography, history, politics & economy" },
-			{ title: "Regions & geography", sub: "Coming soon" },
-			{ title: "Culture & customs", sub: "Coming soon" },
-			{ title: "Festivals", sub: "Coming soon" },
-		],
+		groups: aboutGroups,
 	},
 ];
 
 export default navCategories;
 
-// Given a leaf view's id, returns { categoryLabel, groupLabel, itemTitle } for
-// breadcrumb display, or null if the id has no entry (e.g. "home", or a "coming
-// soon" placeholder with no real id yet). `groupLabel` is omitted for flat
-// categories that have no Practice/Reference/Tones sub-grouping.
-export function findBreadcrumb(viewId)
+// Given a leaf view's id, returns an ordered array of breadcrumb segments to
+// render after the "Home" link, or null when there's no trail (e.g. "home").
+// Each segment is { label, target? }: a `target` view id makes the segment a
+// link; the final (current) segment has no target.
+//
+// The About Thailand section is a genuine three-level hierarchy (hub ->
+// category -> article), so its trail is derived from the content registry. All
+// other screens are one level deep inside a mega-menu group.
+export function getBreadcrumb(viewId)
 {
+	const thailand = parseThailandView(viewId);
+	if (thailand)
+	{
+		if (thailand.kind === "hub")
+		{
+			return [{ label: "About Thailand" }];
+		}
+		if (thailand.kind === "category")
+		{
+			const cat = categoryMap[thailand.id];
+			if (!cat)
+			{
+				return null;
+			}
+			return [
+				{ label: "About Thailand", target: "about" },
+				{ label: cat.label },
+			];
+		}
+		if (thailand.kind === "article")
+		{
+			const article = articleMap[thailand.slug];
+			if (!article)
+			{
+				return null;
+			}
+			const cat = categoryMap[article.category];
+			return [
+				{ label: "About Thailand", target: "about" },
+				{ label: cat.label, target: categoryViewId(cat.id) },
+				{ label: article.navLabel },
+			];
+		}
+	}
+
 	for (const cat of navCategories)
 	{
-		if (cat.groups)
+		if (!cat.groups)
 		{
-			for (const group of cat.groups)
-			{
-				const item = group.items.find((i) => i.id === viewId);
-				if (item)
-				{
-					return { categoryLabel: cat.label, groupLabel: group.label, itemTitle: item.title };
-				}
-			}
 			continue;
 		}
-
-		const item = cat.items.find((i) => i.id === viewId);
-		if (item)
+		for (const group of cat.groups)
 		{
-			return { categoryLabel: cat.label, itemTitle: item.title };
+			const item = group.items.find((i) => i.id === viewId);
+			if (item)
+			{
+				return [
+					{ label: cat.label },
+					{ label: group.label },
+					{ label: item.title },
+				];
+			}
 		}
 	}
 	return null;

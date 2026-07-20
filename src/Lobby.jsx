@@ -11,9 +11,11 @@ export function LobbyCard({ glyph, glyphSmall, title, sub, accent, large, onClic
 	}
 	return (
 		<button type="button" className={classes.join(" ")} onClick={onClick}>
-			<span className={glyphSmall ? "lobby-glyph small" : "lobby-glyph"}>
-				{glyph}
-			</span>
+			{glyph ? (
+				<span className={glyphSmall ? "lobby-glyph small" : "lobby-glyph"}>
+					{glyph}
+				</span>
+			) : null}
 			<span className="lobby-card-text">
 				<span className="lobby-card-title">{title}</span>
 				<span className="lobby-card-sub">{sub}</span>

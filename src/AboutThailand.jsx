@@ -1,7 +1,9 @@
-// Long-form overview page for the "About Thailand" mega-menu. Prose plus a
-// quick-facts table; each claim keeps its source as an inline citation link.
-// This is the entry point for a future Thailand knowledge base -- the section
-// headings below are the candidates for their own deep-dive pages later.
+import { LobbyCard } from "./Lobby";
+import { thailandCategories, categoryViewId } from "./thailandContent";
+
+// Long-form overview page and hub for the "About Thailand" section. Prose plus
+// a quick-facts table (each claim keeps its source as an inline citation link),
+// followed by a category grid that links out to the 27 deep-dive articles.
 
 // Small helper: an external citation link that opens in a new tab safely.
 function Src({ href, children })
@@ -140,7 +142,7 @@ const facts = [
 	},
 ];
 
-function AboutThailand()
+function AboutThailand({ onNavigate })
 {
 	return (
 		<article className="article">
@@ -153,8 +155,8 @@ function AboutThailand()
 				(<Src href="https://www.cia.gov/the-world-factbook/about/archives/2022/countries/thailand/summaries">
 					CIA World Factbook archive
 				</Src>). This overview covers the country's geography, history, political
-				system, and economy at a high level — each of these will get its own
-				deep-dive section on the site over time.
+				system, and economy at a high level — and each opens into a set of
+				deep-dive articles, linked below.
 			</p>
 
 			<h3 className="article-heading">Quick Facts</h3>
@@ -444,19 +446,24 @@ function AboutThailand()
 				(<Src href="https://www.q-files.com/geography/asia/thailand/print">Q-files</Src>).
 			</p>
 
-			<h3 className="article-heading">What's Next</h3>
+			<h3 className="article-heading">Explore in depth</h3>
 			<p>
-				This page is meant as the entry point for learnthai.io's Thailand
-				knowledge base. Each section above — geography, history, political system,
-				economy, and society — is a candidate for its own dedicated deep-dive page
-				(for example: the regional geography of the North vs. Isan vs. the South;
-				a full timeline from Sukhothai to the present; a detailed breakdown of the
-				2017 constitution and electoral system; sector-by-sector economic profiles
-				for tourism, manufacturing, and agriculture). As the site develops into a
-				more dynamic resource, these can be expanded with current news, data
-				visualizations, and updates as Thai politics and economics continue to
-				evolve.
+				This page is the entry point for learnthai.io's Thailand knowledge base.
+				Each section above opens into a set of dedicated deep-dive articles —
+				27 in all, across five areas. Pick a category to start reading.
 			</p>
+			<div className="lobby-cards about-category-grid">
+				{thailandCategories.map((cat) => (
+					<LobbyCard
+						key={cat.id}
+						glyph={cat.glyph}
+						title={cat.label}
+						sub={cat.blurb}
+						accent="jungle"
+						onClick={() => onNavigate(categoryViewId(cat.id))}
+					/>
+				))}
+			</div>
 
 			<p className="article-footnote">
 				Note: the CIA World Factbook, historically a primary reference for

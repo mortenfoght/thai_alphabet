@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { LobbyCard } from "./Lobby";
 import navCategories from "./navCategories";
+import { isThailandView } from "./thailandContent";
 
 // One compact tile in a desktop mega-menu dropdown. Items with no `id`
 // (the "coming soon" placeholders) render disabled and non-interactive.
@@ -27,6 +28,10 @@ function NavItem({ item, accent, onNavigate })
 
 function categoryContainsId(cat, id)
 {
+	if (cat.id === "about")
+	{
+		return isThailandView(id);
+	}
 	if (cat.groups)
 	{
 		return cat.groups.some((g) => g.items.some((item) => item.id === id));
@@ -103,7 +108,17 @@ function TopNav({ viewId, onNavigate })
 						{openCat.groups ? (
 							openCat.groups.map((group) => (
 								<div key={group.label} className="nav-dropdown-group">
-									<div className="nav-group-label">{group.label}</div>
+									{group.id ? (
+										<button
+											type="button"
+											className="nav-group-label nav-group-link"
+											onClick={() => go(group.id)}
+										>
+											{group.label}
+										</button>
+									) : (
+										<div className="nav-group-label">{group.label}</div>
+									)}
 									<div className="nav-dropdown-grid">
 										{group.items.map((item) => (
 											<NavItem
@@ -163,7 +178,17 @@ function TopNav({ viewId, onNavigate })
 										{cat.groups ? (
 											cat.groups.map((group) => (
 												<div key={group.label}>
-													<p className="lobby-section">{group.label}</p>
+													{group.id ? (
+														<button
+															type="button"
+															className="lobby-section lobby-section-link"
+															onClick={() => go(group.id)}
+														>
+															{group.label}
+														</button>
+													) : (
+														<p className="lobby-section">{group.label}</p>
+													)}
 													<div className="lobby-cards">
 														{group.items.map((item) => (
 															<LobbyCard
