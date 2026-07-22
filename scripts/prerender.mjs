@@ -109,17 +109,20 @@ function outFileFor(path)
 }
 
 const paths = prerenderPaths();
+const canonicals = [];
 for (const path of paths)
 {
 	const file = outFileFor(path);
 	mkdirSync(dirname(file), { recursive: true });
 	writeFileSync(file, pageHtml(path), "utf-8");
+	canonicals.push(seoForPath(path).canonical);
 }
 console.log(`Prerendered ${paths.length} pages.`);
 
-// sitemap.xml
-const urls = paths
-	.map((p) => `  <url><loc>${SITE_ORIGIN}${p === "/" ? "" : p}</loc></url>`)
+// sitemap.xml — use the canonical (trailing-slash) URLs so the sitemap matches
+// exactly what the host serves without a redirect.
+const urls = canonicals
+	.map((loc) => `  <url><loc>${loc}</loc></url>`)
 	.join("\n");
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
 writeFileSync(join(distDir, "sitemap.xml"), sitemap, "utf-8");

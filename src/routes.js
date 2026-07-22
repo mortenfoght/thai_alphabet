@@ -27,6 +27,11 @@ export const SITE_NAME = "Learn Thai";
 
 // --- viewId -> path -------------------------------------------------------
 
+// Paths use a trailing slash to match how the host serves prerendered pages:
+// Cloudflare's asset server 307-redirects the no-slash form to the trailing-slash
+// form. Emitting the trailing-slash form directly (in canonical tags, the
+// sitemap, internal links, and pushState) avoids redirects and keeps canonical
+// URLs identical to the served URLs.
 export function viewIdToPath(viewId)
 {
 	const thailand = parseThailandView(viewId);
@@ -34,17 +39,17 @@ export function viewIdToPath(viewId)
 	{
 		if (thailand.kind === "hub")
 		{
-			return "/about-thailand";
+			return "/about-thailand/";
 		}
 		if (thailand.kind === "category")
 		{
-			return `/about-thailand/${thailand.id}`;
+			return `/about-thailand/${thailand.id}/`;
 		}
 		if (thailand.kind === "article")
 		{
 			const article = articleMap[thailand.slug];
 			const category = article ? article.category : "";
-			return `/about-thailand/${category}/${thailand.slug}`;
+			return `/about-thailand/${category}/${thailand.slug}/`;
 		}
 	}
 	// home and all interactive alphabet tools share the root path.
@@ -109,7 +114,7 @@ export function pathToViewId(pathname)
 
 function absolute(path)
 {
-	return `${SITE_ORIGIN}${path === "/" ? "" : path}`;
+	return `${SITE_ORIGIN}${path}`;
 }
 
 // Build a schema.org BreadcrumbList from the app's breadcrumb trail.
