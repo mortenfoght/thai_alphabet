@@ -1,0 +1,18 @@
+{
+	// Static-assets Worker for learnthai.io. Committing this config stops
+	// `wrangler deploy` from auto-detecting a "Vite framework" project and
+	// re-running the build with Cloudflare's Vite plugin (which broke the
+	// prerender step). The CI build command (`npm run build`) already produces
+	// the fully prerendered `dist/`; wrangler now just uploads it.
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "learnthai",
+	"compatibility_date": "2026-07-20",
+	"assets": {
+		"directory": "./dist",
+		// Serve /index.html (200) for any path with no matching asset. Real
+		// asset matches — including the prerendered nested */index.html pages —
+		// are served first, so article URLs get their baked SEO HTML and only
+		// unknown paths fall back to the SPA shell.
+		"not_found_handling": "single-page-application"
+	}
+}

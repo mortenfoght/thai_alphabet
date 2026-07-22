@@ -5,16 +5,51 @@
 // sitemap.xml and robots.txt. Non-prerendered paths (the interactive alphabet
 // tools) continue to be served by the host's SPA fallback.
 
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, statSync } from "node:fs";
 import { resolve, dirname, join } from "node:path";
 import { pathToFileURL } from "node:url";
 
 const root = process.cwd();
 const distDir = resolve(root, "dist");
+const ssrDir = resolve(root, "dist-ssr");
 const templatePath = resolve(distDir, "index.html");
-const serverEntry = pathToFileURL(resolve(root, "dist-ssr/entry-server.js")).href;
 
-const { render, seoForPath, prerenderPaths, SITE_ORIGIN } = await import(serverEntry);
+// Locate the built SSR entry. Normally dist-ssr/entry-server.js, but some build
+// configurations emit a hashed name under an assets/ subfolder, so fall back to
+// scanning for entry-server*.js.
+function findServerEntry(dir)
+{
+	const preferred = resolve(dir, "entry-server.js");
+	if (existsSync(preferred))
+	{
+		return preferred;
+	}
+	for (const name of readdirSync(dir))
+	{
+		const full = resolve(dir, name);
+		if (statSync(full).isDirectory())
+		{
+			const found = findServerEntry(full);
+			if (found)
+			{
+				return found;
+			}
+		}
+		else if (/^entry-server.*\.js$/.test(name))
+		{
+			return full;
+		}
+	}
+	return null;
+}
+
+const serverEntryPath = findServerEntry(ssrDir);
+if (!serverEntryPath)
+{
+	throw new Error(`Could not find the SSR entry (entry-server*.js) in ${ssrDir}`);
+}
+
+const { render, seoForPath, prerenderPaths, SITE_ORIGIN } = await import(pathToFileURL(serverEntryPath).href);
 
 const template = readFileSync(templatePath, "utf-8");
 

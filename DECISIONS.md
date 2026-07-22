@@ -66,3 +66,28 @@ nested `index.html` at the clean (no-slash) article URL rather than the SPA
 fallback — this is what makes per-article SEO actually work.
 
 **Decided by:** Mort (scope + approach), Alfred (implementation), pending Louie QA.
+
+## 2026-07-20 18:15 WAT | Fix: committed wrangler.jsonc so the deploy stops rebuilding
+
+**What:** The SEO deploy failed — not in the build (34 pages prerendered fine),
+but in the deploy step. With no committed wrangler config, `npx wrangler deploy`
+auto-detected a "Vite framework" project and RE-RAN `npm run build` with
+Cloudflare's Vite plugin injected, which changed the SSR sub-build output to a
+hashed `dist-ssr/assets/entry-server-<hash>.js`, so `scripts/prerender.mjs`
+crashed with ERR_MODULE_NOT_FOUND.
+
+**Fix:**
+- Added `wrangler.jsonc` — a static-assets Worker (name "learnthai",
+  `assets.directory: "./dist"`, `not_found_handling: "single-page-application"`).
+  A committed config stops the framework auto-config + rebuild; wrangler just
+  uploads the already-built `dist/`. Validated with `wrangler deploy --dry-run`
+  (reads 74 assets, no rebuild).
+- Hardened `scripts/prerender.mjs` to locate the SSR entry by scanning
+  `dist-ssr` for `entry-server*.js` (defensive against hashed names).
+
+**Serving:** Workers assets `html_handling` defaults to auto-trailing-slash, so
+prerendered nested `*/index.html` are served at clean no-slash URLs; unknown
+paths fall back to the SPA shell — same as before, now with baked per-article
+SEO. Confirms the post-deploy check.
+
+**Decided by:** Alfred, Louie QA PASS.
