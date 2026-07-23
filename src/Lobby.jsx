@@ -1,3 +1,10 @@
+import navCategories from "./navCategories";
+
+// The Thai Alphabet category holds the app's 13 learning screens, grouped
+// (Practice / Reference / Tones). The home screen renders those same groups as
+// its card list, so it stays in sync with the top-nav mega-menu automatically.
+const alphabetCategory = navCategories.find((c) => c.id === "alphabet");
+
 export function LobbyCard({ glyph, glyphSmall, title, sub, accent, large, onClick })
 {
 	const classes = ["lobby-card"];
@@ -25,8 +32,10 @@ export function LobbyCard({ glyph, glyphSmall, title, sub, accent, large, onClic
 	);
 }
 
-// The home screen. Navigation now lives entirely in the top nav's mega-menu
-// (see TopNav.jsx / navCategories.js); this is just the landing hero.
+// The home screen: the brand hero followed by the grouped card list of every
+// learning screen (Practice / Reference / Tones), driven off navCategories so
+// it mirrors the Thai Alphabet mega-menu. The top nav still provides global
+// navigation on every screen.
 function Lobby({ onNavigate })
 {
 	return (
@@ -37,16 +46,25 @@ function Lobby({ onNavigate })
 				</div>
 				<h1 className="lobby-title">Learn Thai</h1>
 				<p className="lobby-subtitle">Consonants, vowels and numbers</p>
-				<div className="buttons">
-					<button
-						type="button"
-						className="primary"
-						onClick={() => onNavigate("random")}
-					>
-						Start practicing
-					</button>
-				</div>
 			</div>
+
+			{alphabetCategory.groups.map((group) => (
+				<section key={group.label} className="lobby-group">
+					<p className="lobby-section">{group.label}</p>
+					<div className="lobby-cards">
+						{group.items.map((item) => (
+							<LobbyCard
+								key={item.id}
+								glyph={item.glyph}
+								glyphSmall={item.glyphSmall}
+								title={item.title}
+								sub={item.sub}
+								onClick={() => onNavigate(item.id)}
+							/>
+						))}
+					</div>
+				</section>
+			))}
 		</div>
 	);
 }
