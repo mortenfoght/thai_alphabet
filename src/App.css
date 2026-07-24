@@ -24,7 +24,11 @@
 	position: relative;
 	background: var(--bg);
 	color: var(--text-primary);
-	font-family: "Manrope", "Noto Sans Thai", "Segoe UI", sans-serif;
+	/* App-wide font: the same pairing used for the short-story titles — Frank
+	   Ruhl Libre for Latin text and Noto Serif Thai for Thai. Noto Serif Thai is
+	   a "looped" (traditional) typeface, which is far easier to read for Thai
+	   learners than the loopless Noto Sans Thai we used before. */
+	font-family: "Frank Ruhl Libre", "Noto Serif Thai", Georgia, serif;
 }
 
 /* Home / lobby screen */
@@ -65,7 +69,7 @@
 	font-weight: 500;
 	font-style: italic;
 	color: var(--gold);
-	font-family: "Frank Ruhl Libre", serif;
+	font-family: "Frank Ruhl Libre", "Noto Serif Thai", serif;
 }
 
 .lobby-subtitle {
@@ -172,7 +176,7 @@
 .lobby-card.large .lobby-card-title {
 	font-size: 1.2rem;
 	font-weight: 600;
-	font-family: "Frank Ruhl Libre", serif;
+	font-family: "Frank Ruhl Libre", "Noto Serif Thai", serif;
 }
 
 .lobby-card-text {
@@ -240,7 +244,7 @@
 
 .nav-wordmark {
 	color: var(--gold);
-	font-family: "Frank Ruhl Libre", serif;
+	font-family: "Frank Ruhl Libre", "Noto Serif Thai", serif;
 	font-style: italic;
 	font-weight: 500;
 	font-size: 1.15rem;
@@ -685,7 +689,7 @@
 	margin: 0 0 1.5rem;
 	text-align: center;
 	font-weight: 600;
-	font-family: "Frank Ruhl Libre", serif;
+	font-family: "Frank Ruhl Libre", "Noto Serif Thai", serif;
 }
 
 .table-search {
@@ -906,7 +910,7 @@
 	margin: 0 0 0.75rem;
 	font-size: 1.6rem;
 	font-weight: 600;
-	font-family: "Frank Ruhl Libre", serif;
+	font-family: "Frank Ruhl Libre", "Noto Serif Thai", serif;
 }
 
 .game-lead {
@@ -1165,7 +1169,7 @@
 	font-weight: 600;
 	line-height: 1.6;
 	text-align: left;
-	font-family: "Frank Ruhl Libre", serif;
+	font-family: "Frank Ruhl Libre", "Noto Serif Thai", serif;
 }
 
 .story-text p {
@@ -1676,7 +1680,7 @@
 
 .article-title {
 	margin: 0 0 1rem;
-	font-family: "Frank Ruhl Libre", serif;
+	font-family: "Frank Ruhl Libre", "Noto Serif Thai", serif;
 	font-weight: 600;
 	font-size: 2rem;
 }
@@ -1691,7 +1695,7 @@
 	margin: 2.5rem 0 1rem;
 	padding-bottom: 0.4rem;
 	border-bottom: 1px solid var(--border);
-	font-family: "Frank Ruhl Libre", serif;
+	font-family: "Frank Ruhl Libre", "Noto Serif Thai", serif;
 	font-weight: 600;
 	font-size: 1.4rem;
 	color: var(--gold);
@@ -1782,7 +1786,7 @@
 	margin: 2.5rem 0 1rem;
 	padding-bottom: 0.4rem;
 	border-bottom: 1px solid var(--border);
-	font-family: "Frank Ruhl Libre", serif;
+	font-family: "Frank Ruhl Libre", "Noto Serif Thai", serif;
 	font-weight: 600;
 	font-size: 1.4rem;
 	color: var(--gold);
@@ -1790,7 +1794,7 @@
 
 .md-h3 {
 	margin: 1.75rem 0 0.75rem;
-	font-family: "Frank Ruhl Libre", serif;
+	font-family: "Frank Ruhl Libre", "Noto Serif Thai", serif;
 	font-weight: 600;
 	font-size: 1.12rem;
 	color: var(--text-primary);
