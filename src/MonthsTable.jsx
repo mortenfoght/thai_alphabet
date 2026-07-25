@@ -1,4 +1,5 @@
 import months from "./months";
+import HearButton from "./HearButton";
 import { speak, speechSupported } from "./speech";
 
 // Maps a month's day-count to the Thai naming rule it comes from. The suffix
@@ -15,44 +16,6 @@ function dayClass(days)
 		return "days-30";
 	}
 	return "days-28";
-}
-
-// A small round speaker button for a single row. Stops propagation so it does
-// not also trigger the row's tap-to-hear (which would speak twice).
-function HearButton({ label, onHear })
-{
-	return (
-		<button
-			type="button"
-			className="hear-btn"
-			onClick={(e) =>
-			{
-				e.stopPropagation();
-				onHear();
-			}}
-			disabled={!speechSupported}
-			aria-label={
-				speechSupported
-					? `Hear ${label} pronounced`
-					: "Speech is not supported in this browser"
-			}
-			title={speechSupported ? "Hear it pronounced" : "Speech is not supported in this browser"}
-		>
-			<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
-				<path
-					fill="currentColor"
-					d="M11 5 6.5 9H3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h3.5L11 19a1 1 0 0 0 1.7-.7V5.7A1 1 0 0 0 11 5z"
-				/>
-				<path
-					fill="none"
-					stroke="currentColor"
-					strokeWidth="1.7"
-					strokeLinecap="round"
-					d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"
-				/>
-			</svg>
-		</button>
-	);
 }
 
 // The 12 Thai months. Each row has a visible Hear button; tapping the row also

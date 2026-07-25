@@ -1,4 +1,5 @@
 import classifiers from "./classifiers";
+import HearButton from "./HearButton";
 import { speak, speechSupported } from "./speech";
 
 // classifiers.js is stored in a loosely category-ordered list (people, then
@@ -17,6 +18,7 @@ function ClassifierTable()
 							<th>Used for</th>
 							<th>Example</th>
 							<th>Phonetic</th>
+							<th>Hear</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -33,6 +35,9 @@ function ClassifierTable()
 									<span className="cell-phonetic">({c.example.gloss})</span>
 								</td>
 								<td className="cell-phonetic">{c.phonetic}</td>
+								<td className="cell-hear">
+									<HearButton label={`the ${c.meaning} classifier`} onHear={() => speak(c.classifier)} />
+								</td>
 							</tr>
 						))}
 					</tbody>
