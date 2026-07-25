@@ -871,6 +871,37 @@
 	line-height: 1.4;
 }
 
+/* Per-row speaker button. Sits in its own column; the whole row is also
+   tap-to-hear, so this is the discoverable affordance for the same action. */
+.cell-hear {
+	width: 3rem;
+	text-align: center;
+}
+
+.hear-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.25rem;
+	height: 2.25rem;
+	padding: 0;
+	border: 0.5px solid var(--border);
+	border-radius: 50%;
+	background: var(--panel-alt);
+	color: var(--aqua);
+	cursor: pointer;
+}
+
+.hear-btn:hover {
+	background: var(--panel);
+	border-color: var(--aqua);
+}
+
+.hear-btn:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
 /* Tone rules view */
 .tone-intro {
 	margin: 0 0 1.25rem;

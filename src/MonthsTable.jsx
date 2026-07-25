@@ -17,8 +17,47 @@ function dayClass(days)
 	return "days-28";
 }
 
-// The 12 Thai months. Tapping a row speaks the full Thai name. The coloured
-// left stripe + legend encode the day-length rule (see months.js).
+// A small round speaker button for a single row. Stops propagation so it does
+// not also trigger the row's tap-to-hear (which would speak twice).
+function HearButton({ label, onHear })
+{
+	return (
+		<button
+			type="button"
+			className="hear-btn"
+			onClick={(e) =>
+			{
+				e.stopPropagation();
+				onHear();
+			}}
+			disabled={!speechSupported}
+			aria-label={
+				speechSupported
+					? `Hear ${label} pronounced`
+					: "Speech is not supported in this browser"
+			}
+			title={speechSupported ? "Hear it pronounced" : "Speech is not supported in this browser"}
+		>
+			<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+				<path
+					fill="currentColor"
+					d="M11 5 6.5 9H3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h3.5L11 19a1 1 0 0 0 1.7-.7V5.7A1 1 0 0 0 11 5z"
+				/>
+				<path
+					fill="none"
+					stroke="currentColor"
+					strokeWidth="1.7"
+					strokeLinecap="round"
+					d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"
+				/>
+			</svg>
+		</button>
+	);
+}
+
+// The 12 Thai months. Each row has a visible Hear button; tapping the row also
+// speaks the full Thai name. The coloured left stripe + legend encode the
+// day-length rule (see months.js).
 function MonthsTable()
 {
 	return (
@@ -40,6 +79,7 @@ function MonthsTable()
 							<th>Month</th>
 							<th>Short</th>
 							<th>Sound</th>
+							<th>Hear</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -54,6 +94,9 @@ function MonthsTable()
 								<td className="cell-name">{m.english}</td>
 								<td><span className="cell-short-pill">{m.short}</span></td>
 								<td className="cell-phonetic">{m.phonetic}</td>
+								<td className="cell-hear">
+									<HearButton label={m.english} onHear={() => speak(m.thai)} />
+								</td>
 							</tr>
 						))}
 					</tbody>
