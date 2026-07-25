@@ -56,6 +56,7 @@ const navCategories = [
 					{ id: "numbertable", glyph: "๑๐", glyphSmall: true, title: "Number table", sub: "All 51 numbers with readings" },
 					{ id: "finals", glyph: "ง", title: "Final consonants", sub: "The 8 ending sounds" },
 					{ id: "classifiertable", glyph: "ใบ", glyphSmall: true, title: "Classifier table", sub: "Every counter word, grouped by what it counts" },
+					{ id: "months", glyph: "เดือน", glyphSmall: true, title: "Months", sub: "The 12 Thai months and their day-length rule" },
 				],
 			},
 			{

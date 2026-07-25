@@ -13,6 +13,7 @@ import NumberFlashcard from "./NumberFlashcard";
 import NumberTable from "./NumberTable";
 import FinalConsonants from "./FinalConsonants";
 import ClassifierTable from "./ClassifierTable";
+import MonthsTable from "./MonthsTable";
 import ToneRulesTable from "./ToneRulesTable";
 import ToneFinder from "./ToneFinder";
 import AboutThailand from "./AboutThailand";
@@ -36,6 +37,7 @@ const views = [
 	{ id: "numbertable", Component: NumberTable },
 	{ id: "finals", Component: FinalConsonants },
 	{ id: "classifiertable", Component: ClassifierTable },
+	{ id: "months", Component: MonthsTable },
 	{ id: "tonerules", Component: ToneRulesTable },
 	{ id: "tonefinder", Component: ToneFinder },
 ];

@@ -1,5 +1,24 @@
 # Decisions
 
+## 2026-07-25 WAT | Thai Months reference page
+
+**What:** Added a Months reference table from the "months" tab of the shared
+"Thai words" study sheet. New `src/months.js` (12-row data) + `src/MonthsTable.jsx`
+(mirrors ClassifierTable), registered as view `months` in App.jsx and linked
+under Thai Alphabet → Reference in navCategories.js. Styling reuses `.char-table`
+with new `.month-*` / `.cell-short-pill` rules in App.css.
+
+**Why:** Mort asked to turn the sheet's months tab into a prettier site page.
+Added a day-length teaching layer: a colour-coded left stripe + legend encode
+the Thai suffix rule (-คม→31, -ยน→30, -พันธ์→28), which native speakers use as
+a mnemonic — turns a flat list into something that teaches.
+
+**Impact:** Client-only view at `/` like the other alphabet tools (no new
+prerendered URL). First vocab page from the sheet; could seed a future
+"Thai Words" nav category if more tabs are added.
+
+**Decided by:** Mort (layout approved before implementation).
+
 ## 2026-07-20 14:00 WAT | About Thailand knowledge base architecture
 
 **What:** Built the full "About Thailand" section — a hub page, 5 category

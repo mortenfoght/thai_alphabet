@@ -798,6 +798,79 @@
 	color: var(--jungle);
 }
 
+/* Months table -----------------------------------------------------------
+   Reuses .char-table; adds a day-length legend, a colour-coded left stripe on
+   the Thai name (encoding the -คม/-ยน/-พันธ์ day rule), and an aqua pill for
+   the short form. */
+.table-title-thai {
+	color: var(--text-muted);
+	font-family: "Noto Serif Thai", serif;
+	font-weight: 400;
+}
+
+.month-legend {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.35rem 1rem;
+	margin: 0 0 1.5rem;
+	color: var(--text-secondary);
+	font-size: 0.8rem;
+}
+
+.month-legend-item {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	white-space: nowrap;
+}
+
+.month-dot {
+	width: 9px;
+	height: 9px;
+	border-radius: 50%;
+}
+
+.month-dot.days-31 {
+	background: var(--gold);
+}
+
+.month-dot.days-30 {
+	background: var(--aqua);
+}
+
+.month-dot.days-28 {
+	background: var(--ochre);
+}
+
+/* Colour-coded left stripe on the Thai name cell. */
+.month-stripe {
+	border-left: 3px solid var(--border);
+}
+
+.month-stripe.days-31 {
+	border-left-color: var(--gold);
+}
+
+.month-stripe.days-30 {
+	border-left-color: var(--aqua);
+}
+
+.month-stripe.days-28 {
+	border-left-color: var(--ochre);
+}
+
+.cell-short-pill {
+	display: inline-block;
+	padding: 2px 12px;
+	border-radius: 999px;
+	background: rgba(64, 224, 208, 0.12);
+	color: var(--aqua);
+	font-family: "Noto Serif Thai", serif;
+	font-size: 1.05rem;
+	line-height: 1.4;
+}
+
 /* Tone rules view */
 .tone-intro {
 	margin: 0 0 1.25rem;
