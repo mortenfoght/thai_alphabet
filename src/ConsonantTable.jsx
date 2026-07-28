@@ -1,6 +1,7 @@
 import { useState } from "react";
 import consonants from "./consonants";
 import { classes, classLabels, classThai } from "./toneRules";
+import HearButton from "./HearButton";
 import { speak, speechSupported } from "./speech";
 
 // consonants.js is already stored in Thai alphabetic order (ก … ฮ); within
@@ -49,6 +50,7 @@ function ConsonantTable()
 											<th>Letter</th>
 											<th>Name</th>
 											<th>Phonetic</th>
+											<th>Hear</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -61,6 +63,9 @@ function ConsonantTable()
 												<td className="cell-letter">{c.letter}</td>
 												<td className="cell-name">{c.name}</td>
 												<td className="cell-phonetic">{c.phonetic}</td>
+												<td className="cell-hear">
+													<HearButton label={c.phonetic} onHear={() => speak(c.name)} />
+												</td>
 											</tr>
 										))}
 									</tbody>

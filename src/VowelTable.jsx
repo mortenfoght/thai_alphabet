@@ -1,4 +1,5 @@
 import vowels from "./vowels";
+import HearButton from "./HearButton";
 import { speak, speechSupported } from "./speech";
 
 // vowels.js is stored in the traditional teaching order, so the table renders
@@ -14,6 +15,7 @@ function VowelTable()
 						<th>Vowel</th>
 						<th>Name</th>
 						<th>Phonetic</th>
+						<th>Hear</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -26,6 +28,9 @@ function VowelTable()
 							<td className="cell-letter">{v.vowel}</td>
 							<td className="cell-name">{v.name}</td>
 							<td className="cell-phonetic">{v.phonetic}</td>
+							<td className="cell-hear">
+								<HearButton label={`the vowel ${v.phonetic}`} onHear={() => speak(v.vowel)} />
+							</td>
 						</tr>
 					))}
 				</tbody>
