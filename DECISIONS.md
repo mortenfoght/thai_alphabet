@@ -1,5 +1,49 @@
 # Decisions
 
+## 2026-10-05 13:45 WAT | Correction: this repo does not own the $thai skill definition
+
+**What:** Reframed `THAI_COMPANION_SKILL.md` from "the skill spec" to
+site-integration notes only. Mort builds and owns the `$thai` skill
+(identity, personality, learner-state rules, learning behaviour, the 8
+modes, session memory) directly in ChatGPT — that's the source of truth.
+This repo's file now only tracks what learnthai.io's backend will need to
+support once the companion is ported here (key proxy, mode routing,
+learner-state schema, session-memory handoff) — it no longer restates or
+defines the skill's pedagogy.
+
+**Why:** Mort corrected the framing of the prior entry below — I had
+written the file as though I were authoring the skill itself, which is
+wrong; ChatGPT is building it, this repo is only the eventual host.
+
+**Impact:** No functional change, correction of scope/ownership only.
+Future sessions: do not redefine the skill's behaviour here — only track
+integration requirements, and confirm any schema/shape against the live
+ChatGPT skill before building against it.
+
+**Decided by:** Mort (correction), Alfred (reframe).
+
+## 2026-10-05 07:30 WAT | $thai companion skill definition (5 parts) — superseded above
+
+**What:** Defined the concrete spec for the "$thai" Thai-companion skill —
+identity/personality, learner-state fields, learning-behaviour rules, the 8
+modes (`$thai chat/lesson/review/vocab/roleplay/correct/translate/test me`),
+and session-memory handoff. Written to `THAI_COMPANION_SKILL.md`.
+
+**Why:** Mort is building this as a ChatGPT custom-GPT skill today and wants
+it eventually incorporated into learnthai.io — build-order item #1 from the
+competitive brief (AI tutor is the single biggest gap vs. StudyThai.ai/Thai
+Ai). This spec is the source of truth for that behaviour wherever it runs.
+
+**Impact:** No code changes — this is a design/content spec, not an
+implementation. Flags a known gap: ChatGPT alone has no reliable persistent
+structured learner-state store; porting to the site is what actually fixes
+Part 5 (Session memory), since the site can own a real backend + database.
+Implementing the companion on-site still needs a backend proxy for the
+OpenAI key (no backend exists in this repo today).
+
+**Decided by:** Mort (the 5-part structure and rules), Alfred (write-up).
+**Superseded by the entry above** — see correction.
+
 ## 2026-07-25 WAT | Thai Months reference page
 
 **What:** Added a Months reference table from the "months" tab of the shared
